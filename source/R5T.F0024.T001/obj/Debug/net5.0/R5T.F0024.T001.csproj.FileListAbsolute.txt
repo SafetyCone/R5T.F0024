@@ -1,0 +1,16 @@
+C:\Code\DEV\Git\GitHub\SafetyCone\R5T.F0024\source\R5T.F0024.T001\bin\Debug\net5.0\R5T.F0024.T001.deps.json
+C:\Code\DEV\Git\GitHub\SafetyCone\R5T.F0024\source\R5T.F0024.T001\bin\Debug\net5.0\R5T.F0024.T001.dll
+C:\Code\DEV\Git\GitHub\SafetyCone\R5T.F0024\source\R5T.F0024.T001\bin\Debug\net5.0\ref\R5T.F0024.T001.dll
+C:\Code\DEV\Git\GitHub\SafetyCone\R5T.F0024\source\R5T.F0024.T001\bin\Debug\net5.0\R5T.F0024.T001.pdb
+C:\Code\DEV\Git\GitHub\SafetyCone\R5T.F0024\source\R5T.F0024.T001\obj\Debug\net5.0\R5T.F0024.T001.GeneratedMSBuildEditorConfig.editorconfig
+C:\Code\DEV\Git\GitHub\SafetyCone\R5T.F0024\source\R5T.F0024.T001\obj\Debug\net5.0\R5T.F0024.T001.AssemblyInfoInputs.cache
+C:\Code\DEV\Git\GitHub\SafetyCone\R5T.F0024\source\R5T.F0024.T001\obj\Debug\net5.0\R5T.F0024.T001.AssemblyInfo.cs
+C:\Code\DEV\Git\GitHub\SafetyCone\R5T.F0024\source\R5T.F0024.T001\obj\Debug\net5.0\R5T.F0024.T001.csproj.CoreCompileInputs.cache
+C:\Code\DEV\Git\GitHub\SafetyCone\R5T.F0024\source\R5T.F0024.T001\obj\Debug\net5.0\R5T.F0024.T001.dll
+C:\Code\DEV\Git\GitHub\SafetyCone\R5T.F0024\source\R5T.F0024.T001\obj\Debug\net5.0\ref\R5T.F0024.T001.dll
+C:\Code\DEV\Git\GitHub\SafetyCone\R5T.F0024\source\R5T.F0024.T001\obj\Debug\net5.0\R5T.F0024.T001.pdb
+C:\Code\DEV\Git\GitHub\SafetyCone\R5T.F0024\source\R5T.F0024.T001\bin\Debug\net5.0\R5T.Magyar.dll
+C:\Code\DEV\Git\GitHub\SafetyCone\R5T.F0024\source\R5T.F0024.T001\bin\Debug\net5.0\R5T.Magyar.pdb
+C:\Code\DEV\Git\GitHub\SafetyCone\R5T.F0024\source\R5T.F0024.T001\bin\Debug\net5.0\R5T.Magyar.xml
+C:\Code\DEV\Git\GitHub\SafetyCone\R5T.F0024\source\R5T.F0024.T001\obj\Debug\net5.0\R5T.F0024.T001.csproj.AssemblyReference.cache
+C:\Code\DEV\Git\GitHub\SafetyCone\R5T.F0024\source\R5T.F0024.T001\obj\Debug\net5.0\R5T.F0024.T001.csproj.CopyComplete
