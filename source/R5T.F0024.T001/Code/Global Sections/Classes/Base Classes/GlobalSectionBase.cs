@@ -1,0 +1,11 @@
+﻿using System;
+
+
+namespace R5T.F0024.T001
+{
+    public abstract class GlobalSectionBase : IGlobalSection
+    {
+        public string Name { get; set; }
+        public PreOrPostSolution PreOrPostSolution { get; set; }
+    }
+}

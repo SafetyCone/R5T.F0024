@@ -15,12 +15,42 @@
           "R5T.F0024.Construction.dll": {}
         }
       },
+      "R5T.F0000/1.0.0": {
+        "dependencies": {
+          "R5T.T0132": "1.0.0",
+          "R5T.Z0000": "1.0.0"
+        },
+        "runtime": {
+          "R5T.F0000.dll": {}
+        }
+      },
       "R5T.F0024/1.0.0": {
         "dependencies": {
+          "R5T.F0000": "1.0.0",
+          "R5T.F0024.T001": "1.0.0",
+          "R5T.Magyar": "1.0.0",
           "R5T.T0132": "1.0.0"
         },
         "runtime": {
           "R5T.F0024.dll": {}
+        }
+      },
+      "R5T.F0024.T001/1.0.0": {
+        "dependencies": {
+          "R5T.Magyar": "1.0.0"
+        },
+        "runtime": {
+          "R5T.F0024.T001.dll": {}
+        }
+      },
+      "R5T.Magyar/1.0.0": {
+        "runtime": {
+          "R5T.Magyar.dll": {}
+        }
+      },
+      "R5T.T0131/1.0.0": {
+        "runtime": {
+          "R5T.T0131.dll": {}
         }
       },
       "R5T.T0132/1.0.0": {
@@ -32,6 +62,20 @@
         "runtime": {
           "R5T.T0141.dll": {}
         }
+      },
+      "R5T.Y0000/1.0.0": {
+        "runtime": {
+          "R5T.Y0000.dll": {}
+        }
+      },
+      "R5T.Z0000/1.0.0": {
+        "dependencies": {
+          "R5T.T0131": "1.0.0",
+          "R5T.Y0000": "1.0.0"
+        },
+        "runtime": {
+          "R5T.Z0000.dll": {}
+        }
       }
     }
   },
@@ -41,7 +85,27 @@
       "serviceable": false,
       "sha512": ""
     },
+    "R5T.F0000/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
     "R5T.F0024/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "R5T.F0024.T001/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "R5T.Magyar/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "R5T.T0131/1.0.0": {
       "type": "project",
       "serviceable": false,
       "sha512": ""
@@ -52,6 +116,16 @@
       "sha512": ""
     },
     "R5T.T0141/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "R5T.Y0000/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "R5T.Z0000/1.0.0": {
       "type": "project",
       "serviceable": false,
       "sha512": ""
