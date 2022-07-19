@@ -7,7 +7,16 @@ namespace R5T.F0024.Construction
     {
         static void Main()
         {
+            Program.TestMethod();
+
             Instances.SolutionFileGeneratorDemonstrations.CreateNew();
+        }
+
+        private static void TestMethod()
+        {
+            string message = "Hello Jon!";
+
+            Console.WriteLine(message);
         }
     }
 }
