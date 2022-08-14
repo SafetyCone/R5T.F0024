@@ -9,9 +9,11 @@
       "R5T.F0024/1.0.0": {
         "dependencies": {
           "R5T.F0000": "1.0.0",
+          "R5T.F0002": "1.0.0",
           "R5T.F0024.T001": "1.0.0",
           "R5T.Magyar": "1.0.0",
-          "R5T.T0132": "1.0.0"
+          "R5T.T0132": "1.0.0",
+          "R5T.Z0009": "1.0.0"
         },
         "runtime": {
           "R5T.F0024.dll": {}
@@ -24,6 +26,17 @@
         },
         "runtime": {
           "R5T.F0000.dll": {}
+        }
+      },
+      "R5T.F0002/1.0.0": {
+        "dependencies": {
+          "R5T.F0000": "1.0.0",
+          "R5T.Magyar": "1.0.0",
+          "R5T.T0132": "1.0.0",
+          "R5T.Z0000": "1.0.0"
+        },
+        "runtime": {
+          "R5T.F0002.dll": {}
         }
       },
       "R5T.F0024.T001/1.0.0": {
@@ -62,6 +75,15 @@
         "runtime": {
           "R5T.Z0000.dll": {}
         }
+      },
+      "R5T.Z0009/1.0.0": {
+        "dependencies": {
+          "R5T.F0000": "1.0.0",
+          "R5T.T0131": "1.0.0"
+        },
+        "runtime": {
+          "R5T.Z0009.dll": {}
+        }
       }
     }
   },
@@ -72,6 +94,11 @@
       "sha512": ""
     },
     "R5T.F0000/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "R5T.F0002/1.0.0": {
       "type": "project",
       "serviceable": false,
       "sha512": ""
@@ -102,6 +129,11 @@
       "sha512": ""
     },
     "R5T.Z0000/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "R5T.Z0009/1.0.0": {
       "type": "project",
       "serviceable": false,
       "sha512": ""

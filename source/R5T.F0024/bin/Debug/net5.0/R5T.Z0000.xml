@@ -27,7 +27,11 @@
         <member name="T:R5T.Z0000.ICharacterNames">
             <summary>
             Names for characters.
-            Character names start with a lowercase letter, and the words in multi-word names are dash-separated.
+            Character name values all:
+            * start with a lowercase letter,
+            * words in multi-word names are dash-separated
+            Sources:
+            * <see href="https://www.ascii-code.com/"/>
             </summary>
         </member>
         <member name="P:R5T.Z0000.ICharacterNames.Unknown">

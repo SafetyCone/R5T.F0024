@@ -11,9 +11,9 @@ namespace R5T.F0024.Construction
 		public void CreateNew()
         {
 			var solutionFilePath =
-				@"C:\Code\DEV\Git\GitHub\SafetyCone\R5T.Z0008\source\R5T.Z0008\Files\ExampleSolution.sln"
-				//@""
-				;
+                //@"C:\Code\DEV\Git\GitHub\SafetyCone\R5T.Z0008\source\R5T.Z0008\Files\ExampleSolution.sln"
+                @"C:\Temp\Solution.sln"
+                ;
 
 			Instances.SolutionFileGenerator.CreateNew(solutionFilePath);
         }

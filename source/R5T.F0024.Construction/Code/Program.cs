@@ -7,11 +7,24 @@ namespace R5T.F0024.Construction
     {
         static void Main()
         {
+            //Program.RoundTripDeserializeThenSerializeSolutionFile();
             //Program.DeserializeSolutionFile();
-            Program.RoundTripDeserializeThenSerializeSolutionFile();
+            //Program.CreateSolutionFile();
+
+            //Instances.SolutionFileExplorations.FindVersionBytesAtFileBeginning();
 
             //Instances.SolutionFileGeneratorDemonstrations.CreateNew();
+
+            //Instances.SolutionFileOperatorDemonstrations.AddProject();
+            //Instances.SolutionFileOperatorDemonstrations.AddAnotherProject();
+            //Instances.SolutionFileOperatorDemonstrations.RemoveAnotherProject();
+            //Instances.SolutionFileOperatorDemonstrations.AddSolutionFolder();
+            //Instances.SolutionFileOperatorDemonstrations.AddProjectInSolutionFolder();
+            //Instances.SolutionFileOperatorDemonstrations.RemoveProjectFromSolutionFolder();
+            Instances.SolutionFileOperatorDemonstrations.GetAndSetSolutionIdentity();
         }
+
+#pragma warning disable IDE0051 // Remove unused private members
 
         private static void RoundTripDeserializeThenSerializeSolutionFile()
         {
@@ -37,6 +50,13 @@ namespace R5T.F0024.Construction
             var solutionFile = Instances.SolutionFileOperator.Deserialize(solutionFilePath);
 
             Console.WriteLine(solutionFile);
+        }
+
+        private static void CreateSolutionFile()
+        {
+            var solutionFilePath = @"C:\Temp\Solution.sln";
+
+            Instances.SolutionFileGenerator.CreateNew(solutionFilePath);
         }
     }
 }

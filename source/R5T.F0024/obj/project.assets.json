@@ -16,6 +16,22 @@
           "bin/placeholder/R5T.F0000.dll": {}
         }
       },
+      "R5T.F0002/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v5.0",
+        "dependencies": {
+          "R5T.F0000": "1.0.0",
+          "R5T.Magyar": "1.0.0",
+          "R5T.T0132": "1.0.0",
+          "R5T.Z0000": "1.0.0"
+        },
+        "compile": {
+          "bin/placeholder/R5T.F0002.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/R5T.F0002.dll": {}
+        }
+      },
       "R5T.F0024.T001/1.0.0": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v5.0",
@@ -82,6 +98,20 @@
         "runtime": {
           "bin/placeholder/R5T.Z0000.dll": {}
         }
+      },
+      "R5T.Z0009/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v5.0",
+        "dependencies": {
+          "R5T.F0000": "1.0.0",
+          "R5T.T0131": "1.0.0"
+        },
+        "compile": {
+          "bin/placeholder/R5T.Z0009.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/R5T.Z0009.dll": {}
+        }
       }
     }
   },
@@ -90,6 +120,11 @@
       "type": "project",
       "path": "../../../R5T.F0000/source/R5T.F0000/R5T.F0000.csproj",
       "msbuildProject": "../../../R5T.F0000/source/R5T.F0000/R5T.F0000.csproj"
+    },
+    "R5T.F0002/1.0.0": {
+      "type": "project",
+      "path": "../../../R5T.F0002/source/R5T.F0002/R5T.F0002.csproj",
+      "msbuildProject": "../../../R5T.F0002/source/R5T.F0002/R5T.F0002.csproj"
     },
     "R5T.F0024.T001/1.0.0": {
       "type": "project",
@@ -120,14 +155,21 @@
       "type": "project",
       "path": "../../../R5T.Z0000/source/R5T.Z0000/R5T.Z0000.csproj",
       "msbuildProject": "../../../R5T.Z0000/source/R5T.Z0000/R5T.Z0000.csproj"
+    },
+    "R5T.Z0009/1.0.0": {
+      "type": "project",
+      "path": "../../../R5T.Z0009/source/R5T.Z0009/R5T.Z0009.csproj",
+      "msbuildProject": "../../../R5T.Z0009/source/R5T.Z0009/R5T.Z0009.csproj"
     }
   },
   "projectFileDependencyGroups": {
     "net5.0": [
       "R5T.F0000 >= 1.0.0",
+      "R5T.F0002 >= 1.0.0",
       "R5T.F0024.T001 >= 1.0.0",
       "R5T.Magyar >= 1.0.0",
-      "R5T.T0132 >= 1.0.0"
+      "R5T.T0132 >= 1.0.0",
+      "R5T.Z0009 >= 1.0.0"
     ]
   },
   "packageFolders": {
@@ -155,6 +197,7 @@
       ],
       "sources": {
         "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+        "C:\\Users\\David\\Dropbox\\Organizations\\Rivet\\Packages": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
@@ -164,6 +207,9 @@
             "C:\\Code\\DEV\\Git\\GitHub\\SafetyCone\\R5T.F0000\\source\\R5T.F0000\\R5T.F0000.csproj": {
               "projectPath": "C:\\Code\\DEV\\Git\\GitHub\\SafetyCone\\R5T.F0000\\source\\R5T.F0000\\R5T.F0000.csproj"
             },
+            "C:\\Code\\DEV\\Git\\GitHub\\SafetyCone\\R5T.F0002\\source\\R5T.F0002\\R5T.F0002.csproj": {
+              "projectPath": "C:\\Code\\DEV\\Git\\GitHub\\SafetyCone\\R5T.F0002\\source\\R5T.F0002\\R5T.F0002.csproj"
+            },
             "C:\\Code\\DEV\\Git\\GitHub\\SafetyCone\\R5T.F0024\\source\\R5T.F0024.T001\\R5T.F0024.T001.csproj": {
               "projectPath": "C:\\Code\\DEV\\Git\\GitHub\\SafetyCone\\R5T.F0024\\source\\R5T.F0024.T001\\R5T.F0024.T001.csproj"
             },
@@ -172,6 +218,9 @@
             },
             "C:\\Code\\DEV\\Git\\GitHub\\SafetyCone\\R5T.T0132\\source\\R5T.T0132\\R5T.T0132.csproj": {
               "projectPath": "C:\\Code\\DEV\\Git\\GitHub\\SafetyCone\\R5T.T0132\\source\\R5T.T0132\\R5T.T0132.csproj"
+            },
+            "C:\\Code\\DEV\\Git\\GitHub\\SafetyCone\\R5T.Z0009\\source\\R5T.Z0009\\R5T.Z0009.csproj": {
+              "projectPath": "C:\\Code\\DEV\\Git\\GitHub\\SafetyCone\\R5T.Z0009\\source\\R5T.Z0009\\R5T.Z0009.csproj"
             }
           }
         }
@@ -200,7 +249,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.301\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.408\\RuntimeIdentifierGraph.json"
       }
     }
   }

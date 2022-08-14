@@ -12,29 +12,29 @@
         <member name="F:R5T.Y0000.Documentation.ForGuid.B_Format">
             <summary>
             <para>The B format is the D format, enclosed in braces:</para>
-            <para>{00000000-0000-0000-0000-000000000000}</para>
+            <para>{9a19103f-16f7-4668-be54-9a1e7a4f7556}</para>
             <inheritdoc cref="F:R5T.Y0000.Documentation.ForGuid.GuidFormatsUrl"/>
             </summary>
         </member>
         <member name="F:R5T.Y0000.Documentation.ForGuid.B_Uppercase_Format">
             <summary>
-            <para>The B format is the D uppercase format, enclosed in braces:</para>
-            <para>{00000000-0000-0000-0000-000000000000}</para>
+            <para>The B uppercase format is the D uppercase format, enclosed in braces:</para>
+            <para>{9A19103F-16F7-4668-BE54-9A1E7A4F7556}</para>
             <inheritdoc cref="F:R5T.Y0000.Documentation.ForGuid.GuidFormatsUrl"/>
             </summary>
         </member>
         <member name="F:R5T.Y0000.Documentation.ForGuid.D_Format">
             <summary>
             <para>The D format is 32 lower-case characters digits in groups of 8, 4, 4, 4, 12, separated by hyphens:</para>
-            <para>00000000-0000-0000-0000-000000000000</para>
+            <para>9a19103f-16f7-4668-be54-9a1e7a4f7556</para>
             <para>This is the default format.</para>
             <inheritdoc cref="F:R5T.Y0000.Documentation.ForGuid.GuidFormatsUrl"/>
             </summary>
         </member>
         <member name="F:R5T.Y0000.Documentation.ForGuid.D_Uppercase_Format">
             <summary>
-            <para>The D format is 32 upper-case characters digits in groups of 8, 4, 4, 4, 12, separated by hyphens:</para>
-            <para>00000000-0000-0000-0000-000000000000</para>
+            <para>The D uppercase format is 32 upper-case characters digits in groups of 8, 4, 4, 4, 12, separated by hyphens:</para>
+            <para>9A19103F-16F7-4668-BE54-9A1E7A4F7556</para>
             <para>This is the default format.</para>
             <inheritdoc cref="F:R5T.Y0000.Documentation.ForGuid.GuidFormatsUrl"/>
             </summary>
@@ -42,21 +42,21 @@
         <member name="F:R5T.Y0000.Documentation.ForGuid.N_Format">
             <summary>
             <para>The N format is 32 consecutive lower-case characters and digits:</para>
-            <para>00000000000000000000000000000000</para>
+            <para>9a19103f16f74668be549a1e7a4f7556</para>
             <inheritdoc cref="F:R5T.Y0000.Documentation.ForGuid.GuidFormatsUrl"/>
             </summary>
         </member>
         <member name="F:R5T.Y0000.Documentation.ForGuid.P_Format">
             <summary>
             <para>The P format is the D format, enclosed in parentheses:</para>
-            <para>(00000000-0000-0000-0000-000000000000)</para>
+            <para>(9a19103f-16f7-4668-be54-9a1e7a4f7556)</para>
             <inheritdoc cref="F:R5T.Y0000.Documentation.ForGuid.GuidFormatsUrl"/>
             </summary>
         </member>
         <member name="F:R5T.Y0000.Documentation.ForGuid.X_Format">
             <summary>
             <para>The X format uses hexadecimal values enclosed in braces:</para>
-            <para>{0x00000000,0x0000,0x0000,{0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00}}</para>
+            <para>{0x9a19103f,0x16f7,0x4668,{0xbe,0x54,0x9a,0x1e,0x7a,0x4f,0x75,0x56}}</para>
             <inheritdoc cref="F:R5T.Y0000.Documentation.ForGuid.GuidFormatsUrl"/>
             </summary>
         </member>
@@ -284,6 +284,62 @@
             </summary>
             <definition>A closure can "pipe" it's outputs to output variables (like variable references or lists) by capturing them as part of its closure.</definition>
             <name><i>output-by-closure</i></name>
+        </member>
+        <member name="F:R5T.Y0000.Glossary.ForPaths.DirectoryIndicated">
+            <summary>
+            <inheritdoc cref="F:R5T.Y0000.Glossary.ForPaths.DirectoryIndicated" path="/definition"/>
+            </summary>
+            <definition>A path is directory indicated if it ends with either of the two directory separator characters.</definition>
+            <name><i>directory indicated</i></name>
+        </member>
+        <member name="F:R5T.Y0000.Glossary.ForPaths.DirectoryPath">
+            <summary>
+            <inheritdoc cref="F:R5T.Y0000.Glossary.ForPaths.DirectoryPath" path="/definition"/>
+            </summary>
+            <definition>The path to a directory.</definition>
+            <name><i>directory path</i></name>
+        </member>
+        <member name="F:R5T.Y0000.Glossary.ForPaths.FileIndicated">
+            <summary>
+            <inheritdoc cref="F:R5T.Y0000.Glossary.ForPaths.FileIndicated" path="/definition"/>
+            </summary>
+            <definition>A path is file indicated if it does *not* end with either of the two directory separator characters.</definition>
+            <name><i>file indicated</i></name>
+        </member>
+        <member name="F:R5T.Y0000.Glossary.ForPaths.FilePath">
+            <summary>
+            <inheritdoc cref="F:R5T.Y0000.Glossary.ForPaths.FilePath" path="/definition"/>
+            </summary>
+            <definition>The path to a file.</definition>
+            <name><i>file path</i></name>
+        </member>
+        <member name="F:R5T.Y0000.Glossary.ForPaths.Windows">
+            <summary>
+            <inheritdoc cref="F:R5T.Y0000.Glossary.ForPaths.Windows" path="/definition"/>
+            </summary>
+            <definition>Path uses the Windows directory separator.</definition>
+            <name><i>windows</i></name>
+        </member>
+        <member name="F:R5T.Y0000.Glossary.ForPaths.NonWindows">
+            <summary>
+            <inheritdoc cref="F:R5T.Y0000.Glossary.ForPaths.NonWindows" path="/definition"/>
+            </summary>
+            <definition>Path uses the Non-Windows directory separator.</definition>
+            <name><i>non-windows</i></name>
+        </member>
+        <member name="F:R5T.Y0000.Glossary.ForPaths.RootIndicated">
+            <summary>
+            <inheritdoc cref="F:R5T.Y0000.Glossary.ForPaths.RootIndicated" path="/definition"/>
+            </summary>
+            <definition>A path is root-indicated if it starts with a directory separator.</definition>
+            <name><i>root-indicated</i></name>
+        </member>
+        <member name="F:R5T.Y0000.Glossary.ForPaths.Strict">
+            <summary>
+            <inheritdoc cref="F:R5T.Y0000.Glossary.ForPaths.Strict" path="/definition"/>
+            </summary>
+            <definition>Many times, a path cannot be absolutely classified. (For example, is a path without any directory separators a Windows or non-Windows path?)</definition>
+            <name><i>stric</i></name>
         </member>
         <member name="F:R5T.Y0000.Glossary.ForToken.Token">
             <summary>

@@ -10,6 +10,12 @@ namespace R5T.F0024
 	[FunctionalityMarker]
 	public partial interface IGuidOperator : IFunctionalityMarker
 	{
+		public Guid New()
+        {
+			var output = Instances.GuidOperator_Base.New();
+			return output;
+        }
+
 		/// <summary>
 		/// Uses the braced (B) uppercase Guid format.
 		/// <inheritdoc cref="GuidDocumentation.B_Uppercase_Format"/>

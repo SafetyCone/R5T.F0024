@@ -15,8 +15,10 @@ namespace R5T.F0024
 		/// <param name="projectFilePath"></param>
 		public void CreateNew(string solutionFilePath)
 		{
+			var solutionGuid = Instances.GuidOperator.New();
+
 			var text =
-@"
+$@"
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.32002.261
@@ -26,7 +28,7 @@ Global
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
-		SolutionGuid = {87F5C35A-2103-4408-870A-230870B62966}
+		SolutionGuid = {Instances.GuidOperator.ToString_ForSolutionFile(solutionGuid)}
 	EndGlobalSection
 EndGlobal
 ";
@@ -49,9 +51,10 @@ EndGlobal
 				;
 
 			// Write text synchronously.
-			File.WriteAllText(
-				filePath,
-				outputText);
+			using var stream = FileStreamHelper.NewWrite(filePath);
+			using var writer = StreamWriterHelper.NewLeaveOpenAddBOM(stream);
+
+			writer.WriteLine(outputText);
 		}
 	}
 }

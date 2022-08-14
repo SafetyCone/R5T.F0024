@@ -69,6 +69,77 @@
         }
       }
     },
+    "C:\\Code\\DEV\\Git\\GitHub\\SafetyCone\\R5T.F0002\\source\\R5T.F0002\\R5T.F0002.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Code\\DEV\\Git\\GitHub\\SafetyCone\\R5T.F0002\\source\\R5T.F0002\\R5T.F0002.csproj",
+        "projectName": "R5T.F0002",
+        "projectPath": "C:\\Code\\DEV\\Git\\GitHub\\SafetyCone\\R5T.F0002\\source\\R5T.F0002\\R5T.F0002.csproj",
+        "packagesPath": "C:\\Users\\David\\.nuget\\packages\\",
+        "outputPath": "C:\\Code\\DEV\\Git\\GitHub\\SafetyCone\\R5T.F0002\\source\\R5T.F0002\\obj\\",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+        ],
+        "configFilePaths": [
+          "C:\\Users\\David\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net5.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "C:\\Users\\David\\Dropbox\\Organizations\\Rivet\\Packages": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net5.0": {
+            "targetAlias": "net5.0",
+            "projectReferences": {
+              "C:\\Code\\DEV\\Git\\GitHub\\SafetyCone\\R5T.F0000\\source\\R5T.F0000\\R5T.F0000.csproj": {
+                "projectPath": "C:\\Code\\DEV\\Git\\GitHub\\SafetyCone\\R5T.F0000\\source\\R5T.F0000\\R5T.F0000.csproj"
+              },
+              "C:\\Code\\DEV\\Git\\GitHub\\SafetyCone\\R5T.Magyar\\source\\R5T.Magyar\\R5T.Magyar.csproj": {
+                "projectPath": "C:\\Code\\DEV\\Git\\GitHub\\SafetyCone\\R5T.Magyar\\source\\R5T.Magyar\\R5T.Magyar.csproj"
+              },
+              "C:\\Code\\DEV\\Git\\GitHub\\SafetyCone\\R5T.T0132\\source\\R5T.T0132\\R5T.T0132.csproj": {
+                "projectPath": "C:\\Code\\DEV\\Git\\GitHub\\SafetyCone\\R5T.T0132\\source\\R5T.T0132\\R5T.T0132.csproj"
+              },
+              "C:\\Code\\DEV\\Git\\GitHub\\SafetyCone\\R5T.Z0000\\source\\R5T.Z0000\\R5T.Z0000.csproj": {
+                "projectPath": "C:\\Code\\DEV\\Git\\GitHub\\SafetyCone\\R5T.Z0000\\source\\R5T.Z0000\\R5T.Z0000.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net5.0": {
+          "targetAlias": "net5.0",
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.408\\RuntimeIdentifierGraph.json"
+        }
+      }
+    },
     "C:\\Code\\DEV\\Git\\GitHub\\SafetyCone\\R5T.F0024\\source\\R5T.F0024.Construction\\R5T.F0024.Construction.csproj": {
       "version": "1.0.0",
       "restore": {
@@ -90,6 +161,7 @@
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "C:\\Users\\David\\Dropbox\\Organizations\\Rivet\\Packages": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -129,7 +201,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.301\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.408\\RuntimeIdentifierGraph.json"
         }
       }
     },
@@ -216,6 +288,7 @@
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "C:\\Users\\David\\Dropbox\\Organizations\\Rivet\\Packages": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -225,6 +298,9 @@
               "C:\\Code\\DEV\\Git\\GitHub\\SafetyCone\\R5T.F0000\\source\\R5T.F0000\\R5T.F0000.csproj": {
                 "projectPath": "C:\\Code\\DEV\\Git\\GitHub\\SafetyCone\\R5T.F0000\\source\\R5T.F0000\\R5T.F0000.csproj"
               },
+              "C:\\Code\\DEV\\Git\\GitHub\\SafetyCone\\R5T.F0002\\source\\R5T.F0002\\R5T.F0002.csproj": {
+                "projectPath": "C:\\Code\\DEV\\Git\\GitHub\\SafetyCone\\R5T.F0002\\source\\R5T.F0002\\R5T.F0002.csproj"
+              },
               "C:\\Code\\DEV\\Git\\GitHub\\SafetyCone\\R5T.F0024\\source\\R5T.F0024.T001\\R5T.F0024.T001.csproj": {
                 "projectPath": "C:\\Code\\DEV\\Git\\GitHub\\SafetyCone\\R5T.F0024\\source\\R5T.F0024.T001\\R5T.F0024.T001.csproj"
               },
@@ -233,6 +309,9 @@
               },
               "C:\\Code\\DEV\\Git\\GitHub\\SafetyCone\\R5T.T0132\\source\\R5T.T0132\\R5T.T0132.csproj": {
                 "projectPath": "C:\\Code\\DEV\\Git\\GitHub\\SafetyCone\\R5T.T0132\\source\\R5T.T0132\\R5T.T0132.csproj"
+              },
+              "C:\\Code\\DEV\\Git\\GitHub\\SafetyCone\\R5T.Z0009\\source\\R5T.Z0009\\R5T.Z0009.csproj": {
+                "projectPath": "C:\\Code\\DEV\\Git\\GitHub\\SafetyCone\\R5T.Z0009\\source\\R5T.Z0009\\R5T.Z0009.csproj"
               }
             }
           }
@@ -261,7 +340,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.301\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.408\\RuntimeIdentifierGraph.json"
         }
       }
     },
@@ -405,6 +484,7 @@
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "C:\\Users\\David\\Dropbox\\Organizations\\Rivet\\Packages": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -437,7 +517,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.301\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.408\\RuntimeIdentifierGraph.json"
         }
       }
     },
@@ -462,6 +542,7 @@
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "C:\\Users\\David\\Dropbox\\Organizations\\Rivet\\Packages": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -494,7 +575,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.301\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.408\\RuntimeIdentifierGraph.json"
         }
       }
     },
@@ -589,6 +670,71 @@
               },
               "C:\\Code\\DEV\\Git\\GitHub\\SafetyCone\\R5T.Y0000\\source\\R5T.Y0000\\R5T.Y0000.csproj": {
                 "projectPath": "C:\\Code\\DEV\\Git\\GitHub\\SafetyCone\\R5T.Y0000\\source\\R5T.Y0000\\R5T.Y0000.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net5.0": {
+          "targetAlias": "net5.0",
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.408\\RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "C:\\Code\\DEV\\Git\\GitHub\\SafetyCone\\R5T.Z0009\\source\\R5T.Z0009\\R5T.Z0009.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Code\\DEV\\Git\\GitHub\\SafetyCone\\R5T.Z0009\\source\\R5T.Z0009\\R5T.Z0009.csproj",
+        "projectName": "R5T.Z0009",
+        "projectPath": "C:\\Code\\DEV\\Git\\GitHub\\SafetyCone\\R5T.Z0009\\source\\R5T.Z0009\\R5T.Z0009.csproj",
+        "packagesPath": "C:\\Users\\David\\.nuget\\packages\\",
+        "outputPath": "C:\\Code\\DEV\\Git\\GitHub\\SafetyCone\\R5T.Z0009\\source\\R5T.Z0009\\obj\\",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+        ],
+        "configFilePaths": [
+          "C:\\Users\\David\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net5.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "C:\\Users\\David\\Dropbox\\Organizations\\Rivet\\Packages": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net5.0": {
+            "targetAlias": "net5.0",
+            "projectReferences": {
+              "C:\\Code\\DEV\\Git\\GitHub\\SafetyCone\\R5T.F0000\\source\\R5T.F0000\\R5T.F0000.csproj": {
+                "projectPath": "C:\\Code\\DEV\\Git\\GitHub\\SafetyCone\\R5T.F0000\\source\\R5T.F0000\\R5T.F0000.csproj"
+              },
+              "C:\\Code\\DEV\\Git\\GitHub\\SafetyCone\\R5T.T0131\\source\\R5T.T0131\\R5T.T0131.csproj": {
+                "projectPath": "C:\\Code\\DEV\\Git\\GitHub\\SafetyCone\\R5T.T0131\\source\\R5T.T0131\\R5T.T0131.csproj"
               }
             }
           }
