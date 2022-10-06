@@ -4,9 +4,10 @@
     "net5.0": {
       "R5T.F0000/1.0.0": {
         "type": "project",
-        "framework": ".NETCoreApp,Version=v5.0",
+        "framework": ".NETStandard,Version=v2.1",
         "dependencies": {
           "R5T.T0132": "1.0.0",
+          "R5T.T0142": "1.0.0",
           "R5T.Z0000": "1.0.0"
         },
         "compile": {
@@ -18,10 +19,9 @@
       },
       "R5T.F0002/1.0.0": {
         "type": "project",
-        "framework": ".NETCoreApp,Version=v5.0",
+        "framework": ".NETStandard,Version=v2.1",
         "dependencies": {
           "R5T.F0000": "1.0.0",
-          "R5T.Magyar": "1.0.0",
           "R5T.T0132": "1.0.0",
           "R5T.Z0000": "1.0.0"
         },
@@ -57,7 +57,7 @@
       },
       "R5T.T0131/1.0.0": {
         "type": "project",
-        "framework": ".NETCoreApp,Version=v5.0",
+        "framework": ".NETStandard,Version=v2.1",
         "dependencies": {
           "R5T.T0143": "1.0.0"
         },
@@ -70,7 +70,7 @@
       },
       "R5T.T0132/1.0.0": {
         "type": "project",
-        "framework": ".NETCoreApp,Version=v5.0",
+        "framework": ".NETStandard,Version=v2.0",
         "dependencies": {
           "R5T.T0143": "1.0.0"
         },
@@ -81,9 +81,22 @@
           "bin/placeholder/R5T.T0132.dll": {}
         }
       },
+      "R5T.T0142/1.0.0": {
+        "type": "project",
+        "framework": ".NETStandard,Version=v2.0",
+        "dependencies": {
+          "R5T.T0143": "1.0.0"
+        },
+        "compile": {
+          "bin/placeholder/R5T.T0142.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/R5T.T0142.dll": {}
+        }
+      },
       "R5T.T0143/1.0.0": {
         "type": "project",
-        "framework": ".NETCoreApp,Version=v5.0",
+        "framework": ".NETStandard,Version=v2.0",
         "compile": {
           "bin/placeholder/R5T.T0143.dll": {}
         },
@@ -93,7 +106,7 @@
       },
       "R5T.Y0000/1.0.0": {
         "type": "project",
-        "framework": ".NETCoreApp,Version=v5.0",
+        "framework": ".NETStandard,Version=v2.1",
         "compile": {
           "bin/placeholder/R5T.Y0000.dll": {}
         },
@@ -103,7 +116,7 @@
       },
       "R5T.Z0000/1.0.0": {
         "type": "project",
-        "framework": ".NETCoreApp,Version=v5.0",
+        "framework": ".NETStandard,Version=v2.1",
         "dependencies": {
           "R5T.T0131": "1.0.0",
           "R5T.Y0000": "1.0.0"
@@ -161,6 +174,11 @@
       "type": "project",
       "path": "../../../R5T.T0132/source/R5T.T0132/R5T.T0132.csproj",
       "msbuildProject": "../../../R5T.T0132/source/R5T.T0132/R5T.T0132.csproj"
+    },
+    "R5T.T0142/1.0.0": {
+      "type": "project",
+      "path": "../../../R5T.T0142/source/R5T.T0142/R5T.T0142.csproj",
+      "msbuildProject": "../../../R5T.T0142/source/R5T.T0142/R5T.T0142.csproj"
     },
     "R5T.T0143/1.0.0": {
       "type": "project",
@@ -271,7 +289,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.408\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.304\\RuntimeIdentifierGraph.json"
       }
     }
   }

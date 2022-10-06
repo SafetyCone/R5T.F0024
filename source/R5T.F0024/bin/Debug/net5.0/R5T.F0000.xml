@@ -4,9 +4,64 @@
         <name>R5T.F0000</name>
     </assembly>
     <members>
+        <member name="T:R5T.F0000.EmptyDisposable">
+            <summary>
+            An empty disposable whose <see cref="M:R5T.F0000.EmptyDisposable.Dispose"/> method does nothing.
+            </summary>
+        </member>
+        <member name="M:R5T.F0000.EmptyDisposable.Dispose">
+            <inheritdoc/>
+        </member>
+        <member name="M:R5T.F0000.Implementations.IXmlOperator.EncodeText_Custom(System.String)">
+            <summary>
+            Encodes special characters in text to allow the text to be a value in an XML file.
+            See: <see href="https://weblogs.sqlteam.com/mladenp/2008/10/21/different-ways-how-to-escape-an-xml-string-in-c/"/>
+            </summary>
+            <remarks>
+            This implementation simply replaces the five special XML characters.
+            </remarks>
+        </member>
+        <member name="M:R5T.F0000.Implementations.IXmlOperator.EncodeText_HtmlEncode(System.String)">
+            <summary>
+            <inheritdoc cref="M:R5T.F0000.Implementations.IXmlOperator.EncodeText_Custom(System.String)" path="/summary"/>
+            </summary>
+            <remarks>
+            This implementation uses the <see cref="M:System.Web.HttpUtility.HtmlEncode(System.String)"/> method.
+            </remarks>
+        </member>
+        <member name="T:R5T.F0000.WasFound`1">
+            <summary>
+            Solves a problem that asynchronous (async) methods cannot use out parameters.
+            Instead, an instance providing both whether the output exists, and the result instance if it does, it output from the asynchronous method.
+            </summary>
+            <typeparam name="T">The type of the result.</typeparam>
+            <remarks>
+            This is the same idea as suggested in Stack Overflow: https://stackoverflow.com/questions/18716928/how-to-write-a-async-method-with-out-parameter
+            </remarks>
+        </member>
+        <member name="M:R5T.F0000.WasFound.From``1(``0)">
+            <summary>
+            Default assumes a reference type.
+            </summary>
+        </member>
+        <member name="M:R5T.F0000.WasFound.FromArray``1(``0[])">
+            <summary>
+            Was found only if the array is non-null and non-empty.
+            </summary>
+        </member>
         <member name="T:R5T.F0000.Documentation">
             <summary>
             Common operations on .NET C# built-in types, like characters, strings, integers, etc.
+            </summary>
+        </member>
+        <member name="F:R5T.F0000.Documentation.CompareToXY">
+            <summary>
+            For x.CompareTo(y) in <see cref="M:System.IComparable`1.CompareTo(`0)"/>.
+            </summary>
+        </member>
+        <member name="M:R5T.F0000.IBooleanOperator.ToString(System.Boolean)">
+            <summary>
+            Chooses <see cref="M:R5T.F0000.IBooleanOperator.ToString_Camelcase(System.Boolean)"/> as the default to match the <see cref="M:System.Boolean.ToString"/> behavior.
             </summary>
         </member>
         <member name="M:R5T.F0000.ICharacterOperator.Describe(System.Char)">
@@ -124,14 +179,55 @@
             Chooses <see cref="M:R5T.F0000.IDateOperator.GetNow_Local"/> as the default.
             </summary>
         </member>
+        <member name="M:R5T.F0000.IDateOperator.GetTomorrow">
+            <summary>
+            Chooses <see cref="M:R5T.F0000.IDateOperator.GetTomorrow_Local"/> as the default.
+            </summary>
+        </member>
         <member name="M:R5T.F0000.IDateOperator.GetToday">
             <summary>
             Chooses <see cref="M:R5T.F0000.IDateOperator.GetToday_Local"/> as the default.
             </summary>
         </member>
+        <member name="M:R5T.F0000.IDateTimeOffsetOperator.GetNow">
+            <summary>
+            Chooses <see cref="M:R5T.F0000.IDateTimeOffsetOperator.GetNow_Local"/> as the default.
+            </summary>
+        </member>
+        <member name="M:R5T.F0000.IEnumerableOperator.Clear``1(System.Collections.Generic.IEnumerable{``0})">
+            <summary>
+            Returns a new enumerable (does not clear the input enumerable, but provides a clean slate for future operations).
+            </summary>
+        </member>
+        <member name="M:R5T.F0000.IEnumerableOperator.ForEach_WithCounter``1(System.Collections.Generic.IEnumerable{``0},System.Action{``0,System.Int32})">
+            <summary>
+            Counter starts at one by default (unlike index, which starts at zero by default).
+            </summary>
+        </member>
         <member name="M:R5T.F0000.IEnumerableOperator.Now``1(System.Collections.Generic.IEnumerable{``0})">
             <summary>
             Enumerates the enumerable.
+            </summary>
+        </member>
+        <member name="M:R5T.F0000.IEnumerationOperator.UnexpectedEnumerationValueMessage``1(``0)">
+            <summary>
+            Gets a message indicating the the input value of the <typeparamref name="TEnum"/> enumeration was unexpected.
+            This is useful in producing an error in the default case for switch statements based on enumeration values.
+            </summary>
+            <remarks>
+            See: https://stackoverflow.com/questions/13645149/what-is-the-correct-exception-to-throw-for-unhandled-enum-values
+            </remarks>
+        </member>
+        <member name="M:R5T.F0000.IEnumerationOperator.SwitchDefaultCaseException``1(``0)">
+            <summary>
+            Produces an exception for use in the default case of a switch statement based on values of the <typeparamref name="TEnum"/> enumeration.
+            Note: there is no method just throwing the exception, as the VS linter does not detect that a method call will always produce an exception, and thus demands that switch default case behavior cannot fall through one default case to another. The throw keyword in the switch default case must be present.
+            </summary>
+        </member>
+        <member name="M:R5T.F0000.IEnumerationOperator.UnexpectedEnumerationValueException``1(``0)">
+            <summary>
+            Produces an exception for the situation where a value of the <typeparamref name="TEnum"/> enumeration was unexpected.
+            This is useful in producing an error in the default case for switch statements based on enumeration values.
             </summary>
         </member>
         <member name="M:R5T.F0000.IEnvironmentOperator.IsDebugCompilationConfiguration">
@@ -167,6 +263,21 @@
         <member name="M:R5T.F0000.IFileExtensionOperator.GetFileExtensionSeparator">
             <summary>
             Chooses <see cref="M:R5T.F0000.IFileExtensionOperator.GetFileExtensionSeparator_Char"/> as the default.
+            </summary>
+        </member>
+        <member name="M:R5T.F0000.IFileOperator.WriteAnEmptyFile(System.String)">
+            <summary>
+            WCreates a file with nothing in it.
+            </summary>
+        </member>
+        <member name="M:R5T.F0000.IFileStreamOperator.NewWrite(System.String,System.Boolean)">
+            <summary>
+            Eases construction of a new <see cref="T:System.IO.FileStream"/> with a best-practice implementation of handling the overwrite parameter.
+            </summary>
+        </member>
+        <member name="M:R5T.F0000.IFileStreamOperator.NewRead(System.String)">
+            <summary>
+            Eases construction of a new <see cref="T:System.IO.FileStream"/> for reading.
             </summary>
         </member>
         <member name="T:R5T.F0000.IFileSystemOperator">
@@ -310,6 +421,16 @@
             Source: https://andrewlock.net/why-is-string-gethashcode-different-each-time-i-run-my-program-in-net-core/#a-deterministic-gethashcode-implementation
             </remarks>
         </member>
+        <member name="M:R5T.F0000.IStringOperator.HasValue(System.String)">
+            <summary>
+            A quality-of-life overload for <see cref="M:R5T.F0000.IStringOperator.IsNotNullAndNotEmpty(System.String)"/>.
+            </summary>
+        </member>
+        <member name="M:R5T.F0000.IStringOperator.IsFound(System.Int32)">
+            <summary>
+            Quality-of-life overload for <see cref="M:R5T.F0000.IStringOperator.WasFound(System.Int32)"/>.
+            </summary>
+        </member>
         <member name="M:R5T.F0000.ITextOperator.MakeEndWithPeriod(System.String)">
             <summary>
             Trims the end of the text and ensures it ends with a single period.
@@ -325,10 +446,32 @@
             Assumes that the inputs are, in fact, sentences.
             </summary>
         </member>
+        <member name="M:R5T.F0000.ITimeSpanOperator.GetOffsetFromUtc">
+            <summary>
+            The offset returned satisfies:
+            local time = UTC time + offset.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:R5T.F0000.ITypeOperator.GetNamespacedTypeName_ForType(System.Type)">
+            <summary>
+            Quality-of-life overload for <see cref="M:R5T.F0000.ITypeOperator.GetNamespacedTypeName(System.Type)"/>.
+            </summary>
+        </member>
+        <member name="M:R5T.F0000.ITypeOperator.GetNamespacedTypeName_ForTypeInfo(System.Reflection.TypeInfo)">
+            <summary>
+            Quality-of-life overload for <see cref="M:R5T.F0000.ITypeOperator.GetNamespacedTypeName(System.Reflection.TypeInfo)"/>.
+            </summary>
+        </member>
         <member name="M:R5T.F0000.ITypeOperator.GetTypeOf``1">
             <summary>
             Gets the type of the <typeparamref name="T"/>.
             Note: same as the typeof() operator.
+            </summary>
+        </member>
+        <member name="M:R5T.F0000.IVersionOperator.GetDefaultVersionPropertyValue">
+            <summary>
+            Returns the value of a version property that is defined, but have the default value (which is 0, zero).
             </summary>
         </member>
         <member name="M:R5T.F0000.IVersionOperator.GetUndefinedVersionPropertyValue">
@@ -341,9 +484,139 @@
             Determines if the version is the <see cref="P:R5T.F0000.IVersions.None"/> value.
             </summary>
         </member>
+        <member name="M:R5T.F0000.IVersionOperator.IsDefinedVersionPropertyValue(System.Int32)">
+            <summary>
+            Determines if the version property value is the value returned by <see cref="M:R5T.F0000.IVersionOperator.GetUndefinedVersionPropertyValue"/> (which is -1, negative one).
+            </summary>
+        </member>
         <member name="M:R5T.F0000.IVersionOperator.IsUndefinedVersionPropertyValue(System.Int32)">
             <summary>
             Determines if the version property value is the value returned by <see cref="M:R5T.F0000.IVersionOperator.GetUndefinedVersionPropertyValue"/> (which is -1, negative one).
+            </summary>
+        </member>
+        <member name="M:R5T.F0000.IVersionOperator.ToString_Major_Minor_Build_ThrowIfFewerTokens(System.Version)">
+            <summary>
+            Will throw if the major, minor, and build properties of version are not set.
+            </summary>
+        </member>
+        <member name="M:R5T.F0000.IVersionOperator.ToString_Major_Minor_Build_FewerTokensOk(System.Version)">
+            <summary>
+            Will return X.Y.Z, and will not throw if the version defines fewer tokens.
+            </summary>
+        </member>
+        <member name="M:R5T.F0000.IVersionOperator.ToString_Major_Minor_Build(System.Version)">
+            <summary>
+            Chooses <see cref="M:R5T.F0000.IVersionOperator.ToString_Major_Minor_Build_FewerTokensOk(System.Version)"/> as the default.
+            </summary>
+        </member>
+        <member name="M:R5T.F0000.IXmlOperator.AddChild(System.Xml.Linq.XElement,System.String)">
+            <summary>
+            Creates an <see cref="T:System.Xml.Linq.XElement"/> with the child name, adds it to the parent, and returns the child.
+            </summary>
+            <returns>The child <see cref="T:System.Xml.Linq.XElement"/>.</returns>
+        </member>
+        <member name="M:R5T.F0000.IXmlOperator.CreateNewDocument_Empty">
+            <summary>
+            Quality-of-life overload for <see cref="M:R5T.F0000.IXmlOperator.CreateNewDocument_WithoutDefaultDeclaration"/>
+            </summary>
+        </member>
+        <member name="M:R5T.F0000.IXmlOperator.CreateNewDocument(System.Xml.Linq.XElement)">
+            <summary>
+            Chooses <see cref="M:R5T.F0000.IXmlOperator.CreateNewDocument_WithDefaultDeclaration(System.Xml.Linq.XElement)"/> as the default.
+            </summary>
+        </member>
+        <member name="M:R5T.F0000.IXmlOperator.CreateNewDocumentWithRoot(System.String)">
+            <summary>
+            Chooses <see cref="M:R5T.F0000.IXmlOperator.CreateNewDocumentWithRoot_WithXsdAndXsi(System.String)"/> as the default.
+            </summary>
+        </member>
+        <member name="M:R5T.F0000.IXmlOperator.CreateNewDocument">
+            <summary>
+            Chooses <see cref="M:R5T.F0000.IXmlOperator.CreateNewDocument_WithDefaultDeclaration"/> as the deafult.
+            </summary>
+        </member>
+        <member name="M:R5T.F0000.IXmlOperator.Load(System.String)">
+            <summary>
+            Chooses <see cref="M:R5T.F0000.IXmlOperator.Load_XDocument(System.String)"/> as the default.
+            </summary>
+        </member>
+        <member name="M:R5T.F0000.IXmlOperator.Save(System.Xml.Linq.XDocument,System.String)">
+            <summary>
+            Quality-of-life overload for <see cref="M:R5T.F0000.IXmlOperator.Write(System.Xml.Linq.XDocument,System.String)"/>.
+            </summary>
+        </member>
+        <member name="M:R5T.F0000.IXmlOperator.Write(System.Xml.Linq.XDocument,System.String)">
+            <summary>
+            Chooses <see cref="M:R5T.F0000.IXmlOperator.WriteToFile_EmptyIsOk(System.Xml.Linq.XDocument,System.String)"/> as the default.
+            </summary>
+        </member>
+        <member name="M:R5T.F0000.IXmlOperator.WriteToFile_EmptyIsOk(System.Xml.Linq.XDocument,System.String)">
+            <summary>
+            XML files *must* have a root: https://www.w3schools.com/xml/xml_syntax.asp
+            So if the document has no root, saving the document results in an <see cref="T:System.InvalidOperationException"/>: Token EndDocument in state Document would result in an invalid XML document.
+            This method will allow writing an empty document.
+            If the document has no root, just the declaration is written.
+            If the document also has no declaration, nothing is written.
+            </summary>
+        </member>
+        <member name="M:R5T.F0000.IXmlWriterOperator.NewOmitDeclaration_Synchronous(System.IO.Stream)">
+            <summary>
+            The System XML writer includes an XML declaration by default, however this is often not desired.
+            An XML writer can be created with settings specifying to omit the XML declaration, but other settings must be set to get the desired default behavior.
+            This method produces an XML writer that omits the declaration.
+            </summary>
+        </member>
+        <member name="M:R5T.F0000.IXmlWriterOperator.NewOmitDeclaration(System.IO.Stream)">
+            <inheritdoc cref="M:R5T.F0000.IXmlWriterOperator.NewOmitDeclaration_Synchronous(System.IO.Stream)"/>
+        </member>
+        <member name="M:R5T.F0000.IXmlWriterOperator.New_Synchronous(System.IO.Stream)">
+            <summary>
+            Gets the standard XML writer.
+            </summary>
+        </member>
+        <member name="M:R5T.F0000.IXmlWriterOperator.New(System.IO.Stream)">
+            <inheritdoc cref="M:R5T.F0000.IXmlWriterOperator.New_Synchronous(System.IO.Stream)"/>
+        </member>
+        <member name="M:R5T.F0000.IXmlWriterSettingsOperator.GetIndent">
+            <summary>
+            Gets a simple indenting XML writer settings instance.
+            </summary>
+        </member>
+        <member name="M:R5T.F0000.IXmlWriterSettingsOperator.GetNoDeclaration_Synchronous">
+            <summary>
+            The System XML writer includes an XML declaration by default, however this is often not desired.
+            An XML writer can be created with settings specifying to omit the XML declaration, but other settings must be set to get the desired default behavior.
+            This method produces XML writer settings that replicate the default settings, except specifying to omit the declaration.
+            </summary>
+        </member>
+        <member name="M:R5T.F0000.IXmlWriterSettingsOperator.GetNoDeclaration">
+            <inheritdoc cref="M:R5T.F0000.IXmlWriterSettingsOperator.GetNoDeclaration_Synchronous"/>
+        </member>
+        <member name="M:R5T.F0000.IXmlWriterSettingsOperator.GetStandardSettings_Synchronous">
+            <summary>
+            Gets the standard XML writer settings.
+            </summary>
+        </member>
+        <member name="M:R5T.F0000.IXmlWriterSettingsOperator.GetStandardSettings">
+            <summary>
+            Gets the standard XML writer settings.
+            </summary>
+        </member>
+        <member name="P:R5T.F0000.IComparisonResults.LessThan">
+            <summary>
+            Indicates that x is less than y.
+            <para><inheritdoc cref="F:R5T.F0000.Documentation.CompareToXY" path="/summary"/></para>
+            </summary>
+        </member>
+        <member name="P:R5T.F0000.IComparisonResults.GreaterThan">
+            <summary>
+            Indicates that x is greater than y.
+            <para><inheritdoc cref="F:R5T.F0000.Documentation.CompareToXY" path="/summary"/></para>
+            </summary>
+        </member>
+        <member name="P:R5T.F0000.IExecutableNames.Cmd">
+            <summary>
+            "cmd" (also known as "cmd.exe")
             </summary>
         </member>
         <member name="P:R5T.F0000.IVersions.Default">
@@ -354,6 +627,19 @@
         <member name="P:R5T.F0000.IVersions.None">
             <summary>
             The none version is just null (since Version is a reference type).
+            </summary>
+        </member>
+        <member name="P:R5T.F0000.IXmlNamespaceNames.XmlNamespaceName">
+            <summary>
+            xmlns
+            </summary>
+        </member>
+        <member name="M:System.Linq.EnumerableExtensions.ForEach_WithCounter``1(System.Collections.Generic.IEnumerable{``0},System.Action{``0,System.Int32})">
+            <inheritdoc cref="M:R5T.F0000.IEnumerableOperator.ForEach_WithCounter``1(System.Collections.Generic.IEnumerable{``0},System.Action{``0,System.Int32})"/>
+        </member>
+        <member name="M:System.Extensions.ObjectExtensions.Modify``1(``0,System.Action{``0})">
+            <summary>
+            Allows fluent modification of any object.
             </summary>
         </member>
     </members>

@@ -3,14 +3,95 @@ using System.IO;
 
 using R5T.T0132;
 
+using R5T.F0024.T001;
+
 
 namespace R5T.F0024
 {
 	[FunctionalityMarker]
 	public partial interface ISolutionFileGenerator : IFunctionalityMarker
 	{
+		public SolutionFile CreateNew(VisualStudioVersion version)
+        {
+			var solutionFile = version switch
+			{
+				VisualStudioVersion.Version_2019 => this.CreateNew_2019(),
+				VisualStudioVersion.Version_2022 => this.CreateNew_2022(),
+				_ => throw Magyar.EnumerationHelper.SwitchDefaultCaseException(version),
+			};
+
+			return solutionFile;
+        }
+
+		public SolutionFile CreateNew_2019()
+		{
+			var solutionFile = new SolutionFile()
+			.WithVersionInformation(Instances.VersionInformationGenerator.Get2019_Default)
+			.AddGlobalSection(Instances.GlobalSectionGenerator.SolutionProperties_GetDefault)
+			.AddGlobalSection(Instances.GlobalSectionGenerator.ExtensibilityGlobals_GetDefault)
+			;
+
+			return solutionFile;
+		}
+
+		public SolutionFile CreateNew_2019(Action<SolutionFile> modifier)
+		{
+			var solutionFile = this.CreateNew(
+				this.CreateNew_2019,
+				modifier);
+
+			return solutionFile;
+		}
+
+		public SolutionFile CreateNew_2022()
+		{
+			var solutionFile = new SolutionFile()
+			.WithVersionInformation(Instances.VersionInformationGenerator.Get2022_Default)
+			.AddGlobalSection(Instances.GlobalSectionGenerator.SolutionProperties_GetDefault)
+			.AddGlobalSection(Instances.GlobalSectionGenerator.ExtensibilityGlobals_GetDefault)
+			;
+
+			return solutionFile;
+		}
+
+		public SolutionFile CreateNew_2022(Action<SolutionFile> modifier)
+		{
+			var solutionFile = this.CreateNew(
+				this.CreateNew_2022,
+				modifier);
+
+			return solutionFile;
+		}
+
 		/// <summary>
-		/// Creates a new, empty solution file.
+		/// Chooses <see cref="CreateNew_2019"/> as the default.
+		/// </summary>
+		public SolutionFile CreateNew()
+        {
+			var solutionFile = this.CreateNew_2019();
+			return solutionFile;
+        }
+
+		public SolutionFile CreateNew(Action<SolutionFile> modifier)
+		{
+			var solutionFile = this.CreateNew();
+
+			modifier(solutionFile);
+
+			return solutionFile;
+		}
+
+		public SolutionFile CreateNew(Func<SolutionFile> constructor, Action<SolutionFile> modifier)
+		{
+			var solutionFile = constructor();
+
+			modifier(solutionFile);
+
+			return solutionFile;
+		}
+
+		/// <summary>
+		/// Creates a new, empty solution file. (VS 2022)
 		/// </summary>
 		/// <param name="projectFilePath"></param>
 		public void CreateNew(string solutionFilePath)
@@ -20,8 +101,8 @@ namespace R5T.F0024
 			var text =
 $@"
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 16
-VisualStudioVersion = 16.0.32002.261
+# Visual Studio Version 17
+VisualStudioVersion = 17.2.32630.192
 MinimumVisualStudioVersion = 10.0.40219.1
 Global
 	GlobalSection(SolutionProperties) = preSolution

@@ -271,6 +271,11 @@
             Uses <see cref="M:R5T.Magyar.ApprovalStatusExtensions.EnsureIsNotPending(R5T.Magyar.ApprovalStatus)"/>.
             </remarks>
         </member>
+        <member name="M:R5T.Magyar.IEnumerableExtensions.ForEach_WithCounter``1(System.Collections.Generic.IEnumerable{``0},System.Action{``0,System.Int32})">
+            <summary>
+            Counter starts at one by default (unlike index, which starts at zero by default).
+            </summary>
+        </member>
         <member name="M:R5T.Magyar.OrganizationCourtStatusExtensions.EnsureIsNotPending(R5T.Magyar.OrganizationCourtStatus)">
             <summary>
             Ensures an <see cref="T:R5T.Magyar.OrganizationCourtStatus"/> is not <see cref="F:R5T.Magyar.OrganizationCourtStatus.Pending"/>.
@@ -726,11 +731,6 @@
         <member name="M:System.Linq.IEnumerableExtensions.ExceptWhere``1(System.Collections.Generic.IEnumerable{``0},System.Func{``0,System.Boolean})">
             <summary>
             Same as where, except that the output contains values where the predicate is false.
-            </summary>
-        </member>
-        <member name="M:System.Linq.IEnumerableExtensions.ForEach_WithCounter``1(System.Collections.Generic.IEnumerable{``0},System.Action{``0,System.Int32})">
-            <summary>
-            Counter starts at one by default (unlike index, which starts at zero by default).
             </summary>
         </member>
         <member name="M:System.Linq.IEnumerableExtensions.GetTrailingAppendix``1(System.Collections.Generic.IEnumerable{``0},System.Collections.Generic.IEnumerable{``0})">
