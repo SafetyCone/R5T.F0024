@@ -7,7 +7,7 @@ namespace R5T.F0024
 	{
 		#region Infrastructure
 
-	    public static Operations Instance { get; } = new();
+	    public static IOperations Instance { get; } = new Operations();
 
 	    private Operations()
 	    {

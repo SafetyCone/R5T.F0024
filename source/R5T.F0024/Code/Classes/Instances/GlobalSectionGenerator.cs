@@ -7,7 +7,7 @@ namespace R5T.F0024
 	{
 		#region Infrastructure
 
-	    public static GlobalSectionGenerator Instance { get; } = new();
+	    public static IGlobalSectionGenerator Instance { get; } = new GlobalSectionGenerator();
 
 	    private GlobalSectionGenerator()
 	    {

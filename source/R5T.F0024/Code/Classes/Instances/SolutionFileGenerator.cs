@@ -7,7 +7,7 @@ namespace R5T.F0024
 	{
 		#region Infrastructure
 
-	    public static SolutionFileGenerator Instance { get; } = new();
+	    public static ISolutionFileGenerator Instance { get; } = new SolutionFileGenerator();
 
 	    private SolutionFileGenerator()
 	    {

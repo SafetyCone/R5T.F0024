@@ -7,7 +7,7 @@ namespace R5T.F0024
 	{
 		#region Infrastructure
 
-	    public static GlobalSectionOperator Instance { get; } = new();
+	    public static IGlobalSectionOperator Instance { get; } = new GlobalSectionOperator();
 
 	    private GlobalSectionOperator()
 	    {
@@ -23,7 +23,7 @@ namespace R5T.F0024
 		{
 			#region Infrastructure
 
-			public static GlobalSectionOperator Instance { get; } = new();
+			public static IGlobalSectionOperator Instance { get; } = new GlobalSectionOperator();
 
 			private GlobalSectionOperator()
 			{

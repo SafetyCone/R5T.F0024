@@ -178,7 +178,7 @@ namespace R5T.F0024
 
 		public IEnumerable<string> Serialize_GlobalSection(IGlobalSection globalSection, IEnumerable<string> bodyLines)
         {
-			var output = EnumerableHelper.From(
+			var output = Instances.EnumerableOperator.From(
 				$"GlobalSection({globalSection.Name}) = {globalSection.PreOrPostSolution.ToString_ForSolutionFile()}")
 				.Append(bodyLines
 					// Prepend tab to each body line.
@@ -221,7 +221,7 @@ namespace R5T.F0024
 				var sectionlines = globalSection switch
 				{
 					ExtensibilityGlobalsGlobalSection extensibilityGlobalsGlobalSection => this.Serialize_GlobalSection(extensibilityGlobalsGlobalSection,
-						EnumerableHelper.From($"SolutionGuid = {Instances.GuidOperator.ToString_ForSolutionFile(extensibilityGlobalsGlobalSection.SolutionIdentity)}")),
+						Instances.EnumerableOperator.From($"SolutionGuid = {Instances.GuidOperator.ToString_ForSolutionFile(extensibilityGlobalsGlobalSection.SolutionIdentity)}")),
 
 					LinesBasedGlobalSection linesBasedGlobalSection => this.Serialize_GlobalSection(linesBasedGlobalSection,
 						linesBasedGlobalSection.Lines),
@@ -246,8 +246,8 @@ namespace R5T.F0024
 
 			lines.Add("EndGlobal");
 
-			using var stream = FileStreamHelper.NewWrite(solutionFilePath);
-			using var writer = StreamWriterHelper.NewLeaveOpenAddBOM(stream);
+			using var stream = Instances.FileStreamOperator.NewWrite(solutionFilePath);
+			using var writer = Instances.StreamWriterOperator.NewLeaveOpenAddBOM(stream);
 
 			foreach (var line in lines)
 			{
@@ -259,7 +259,7 @@ namespace R5T.F0024
 		{
 			var solutionFile = new SolutionFile();
 
-			var allLines = FileHelper.ReadAllLinesSynchronous(solutionFilePath)
+			var allLines = Instances.FileOperator.ReadAllLinesSynchronous(solutionFilePath)
 				.ToList();
 
 			var enumerator = allLines.GetEnumerator();
@@ -411,8 +411,10 @@ namespace R5T.F0024
 
             foreach (var line in lines.Lines)
             {
-				var tokens = line.Split(Instances.Characters.Equals, StringSplitOptions.RemoveEmptyEntries | StringSplitOptions.TrimEntries);
-
+				var tokens = line.Split(Instances.Characters.Equals, StringSplitOptions.RemoveEmptyEntries)
+					.Trim()
+					.ToArray();
+				
 				var key = tokens[0];
 				var valueToken = tokens[1];
 

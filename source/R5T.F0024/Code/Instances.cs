@@ -1,5 +1,6 @@
 using System;
 
+using R5T.F0000;
 using R5T.F0002;
 
 using R5T.Z0000;
@@ -14,7 +15,10 @@ namespace R5T.F0024
     public static class Instances
     {
         public static ICharacters Characters { get; } = Z0000.Characters.Instance;
+        public static IEnumerableOperator EnumerableOperator { get; } = F0000.EnumerableOperator.Instance;
         public static IEnumerationHelper EnumerationHelper { get; } = F0002.EnumerationHelper.Instance;
+        public static IFileOperator FileOperator { get; } = F0000.FileOperator.Instance;
+        public static IFileStreamOperator FileStreamOperator { get; } = F0000.FileStreamOperator.Instance;
         public static IGlobalSectionGenerator GlobalSectionGenerator { get; } = F0024.GlobalSectionGenerator.Instance;
         public static IGlobalSectionNames GlobalSectionNames { get; } = F0024.GlobalSectionNames.Instance;
         public static IGlobalSectionOperator GlobalSectionOperator { get; } = F0024.GlobalSectionOperator.Instance;
@@ -28,6 +32,7 @@ namespace R5T.F0024
         public static ISolutionFileFormatVersionStrings SolutionFileFormatVersionStrings { get; } = F0024.SolutionFileFormatVersionStrings.Instance;
         public static Internal.ISolutionFileOperator SolutionFileOperator_Internal { get; } = Internal.SolutionFileOperator.Instance;
         public static ISolutionFileSerializer SolutionFileSerializer { get; } = F0024.SolutionFileSerializer.Instance;
+        public static IStreamWriterOperator StreamWriterOperator { get; } = F0000.StreamWriterOperator.Instance;
         public static IVersionInformationGenerator VersionInformationGenerator { get; } = F0024.VersionInformationGenerator.Instance;
         public static IVersionInformationOperator VersionInformationOperator { get; } = F0024.VersionInformationOperator.Instance;
         public static IVisualStudioVersions VisualStudioVersions { get; } = F0024.VisualStudioVersions.Instance;

@@ -7,7 +7,7 @@ namespace R5T.F0024
 	{
 		#region Infrastructure
 
-	    public static SolutionFileOperator Instance { get; } = new();
+	    public static ISolutionFileOperator Instance { get; } = new SolutionFileOperator();
 
 	    private SolutionFileOperator()
 	    {
@@ -23,7 +23,7 @@ namespace R5T.F0024
 		{
 			#region Infrastructure
 
-			public static SolutionFileOperator Instance { get; } = new();
+			public static ISolutionFileOperator Instance { get; } = new SolutionFileOperator();
 
 			private SolutionFileOperator()
 			{

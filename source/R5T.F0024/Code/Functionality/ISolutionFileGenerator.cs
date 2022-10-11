@@ -17,7 +17,7 @@ namespace R5T.F0024
 			{
 				VisualStudioVersion.Version_2019 => this.CreateNew_2019(),
 				VisualStudioVersion.Version_2022 => this.CreateNew_2022(),
-				_ => throw Magyar.EnumerationHelper.SwitchDefaultCaseException(version),
+				_ => throw Instances.EnumerationHelper.GetSwitchDefaultCaseException(version),
 			};
 
 			return solutionFile;
@@ -132,8 +132,8 @@ EndGlobal
 				;
 
 			// Write text synchronously.
-			using var stream = FileStreamHelper.NewWrite(filePath);
-			using var writer = StreamWriterHelper.NewLeaveOpenAddBOM(stream);
+			using var stream = Instances.FileStreamOperator.NewWrite(filePath);
+			using var writer = Instances.StreamWriterOperator.NewLeaveOpenAddBOM(stream);
 
 			writer.WriteLine(outputText);
 		}

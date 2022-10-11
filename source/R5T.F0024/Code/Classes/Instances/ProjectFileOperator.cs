@@ -7,7 +7,7 @@ namespace R5T.F0024.N000
 	{
 		#region Infrastructure
 
-	    public static ProjectFileOperator Instance { get; } = new();
+	    public static IProjectFileOperator Instance { get; } = new ProjectFileOperator();
 
 	    private ProjectFileOperator()
 	    {

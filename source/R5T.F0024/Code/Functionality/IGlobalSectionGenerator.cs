@@ -40,7 +40,7 @@ namespace R5T.F0024
 			{
 				Name = Instances.GlobalSectionNames.SolutionProperties,
 				PreOrPostSolution = PreOrPostSolution.PreSolution,
-				Lines = new()
+				Lines = new List<string>()
 				{
 					"HideSolutionNode = FALSE",
 				},

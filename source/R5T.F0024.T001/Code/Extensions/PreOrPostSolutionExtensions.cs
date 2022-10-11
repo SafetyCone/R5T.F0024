@@ -1,7 +1,5 @@
 ﻿using System;
 
-using R5T.Magyar;
-
 using R5T.F0024.T001;
 
 
@@ -15,7 +13,7 @@ namespace System
             {
                 PreOrPostSolution.PostSolution => "postSolution",
                 PreOrPostSolution.PreSolution => "preSolution",
-                _ => throw EnumerationHelper.SwitchDefaultCaseException(preOrPostSolution),
+                _ => throw R5T.F0000.EnumerationOperator.Instance.SwitchDefaultCaseException(preOrPostSolution),
             };
 
             return output;

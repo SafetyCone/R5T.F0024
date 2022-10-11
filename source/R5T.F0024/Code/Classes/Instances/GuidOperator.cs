@@ -7,7 +7,7 @@ namespace R5T.F0024
 	{
 		#region Infrastructure
 
-	    public static GuidOperator Instance { get; } = new();
+	    public static IGuidOperator Instance { get; } = new GuidOperator();
 
 	    private GuidOperator()
 	    {

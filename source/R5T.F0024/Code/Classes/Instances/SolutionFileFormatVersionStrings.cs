@@ -7,7 +7,7 @@ namespace R5T.F0024
 	{
 		#region Infrastructure
 
-	    public static SolutionFileFormatVersionStrings Instance { get; } = new();
+	    public static ISolutionFileFormatVersionStrings Instance { get; } = new SolutionFileFormatVersionStrings();
 
 	    private SolutionFileFormatVersionStrings()
 	    {

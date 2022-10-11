@@ -7,7 +7,7 @@ namespace R5T.F0024
 	{
 		#region Infrastructure
 
-	    public static VisualStudioVersionStrings Instance { get; } = new();
+	    public static IVisualStudioVersionStrings Instance { get; } = new VisualStudioVersionStrings();
 
 	    private VisualStudioVersionStrings()
 	    {
