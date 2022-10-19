@@ -259,7 +259,7 @@ namespace R5T.F0024
 		{
 			var solutionFile = new SolutionFile();
 
-			var allLines = Instances.FileOperator.ReadAllLinesSynchronous(solutionFilePath)
+			var allLines = Instances.FileOperator.ReadAllLines_Synchronous(solutionFilePath)
 				.ToList();
 
 			var enumerator = allLines.GetEnumerator();

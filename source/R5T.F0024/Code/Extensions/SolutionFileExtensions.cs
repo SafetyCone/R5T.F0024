@@ -25,6 +25,13 @@ namespace System
             return solutionFile;
         }
 
+        /// <inheritdoc cref="R5T.F0024.ISolutionFileOperator.Get_NonSolutionFolderProjectFileReferences(SolutionFile)"/>
+        public static ProjectFileReference[] GetProjectFileReferences(this SolutionFile solutionFile)
+        {
+            var output = Instances.SolutionFileOperator.Get_ProjectFileReferences(solutionFile);
+            return output;
+        }
+
         public static SolutionFile WithVersionInformation(this SolutionFile solutionFile,
             VersionInformation versionInformation)
         {

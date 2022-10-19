@@ -1,5 +1,7 @@
 using System;
+using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 
 using R5T.F0000;
 using R5T.T0132;
@@ -21,7 +23,7 @@ namespace R5T.F0024
 			string solutionFolderName,
 			Guid projectIdentity)
         {
-			Internal.InReserializedContext(solutionFilePath,
+			this.InModifyContext(solutionFilePath,
 				(solutionFile, _) =>
 				{
 					// Acquire the solution folder identity (adding the solution folder if need be).
@@ -54,7 +56,7 @@ namespace R5T.F0024
 			string projectFilePath,
 			string solutionFolderName)
         {
-			var projectIdentity = Internal.InReserializedContext(solutionFilePath,
+			var projectIdentity = this.InModifyContext(solutionFilePath,
 				(solutionFile, _) =>
 				{
 					// Acquire the solution folder identity (adding the solution folder if need be).
@@ -83,6 +85,46 @@ namespace R5T.F0024
 			return projectIdentity;
         }
 
+		public Dictionary<string, Guid> AddProjects_InSolutionFolder(
+			string solutionFilePath,
+			IEnumerable<string> projectFilePaths,
+			string solutionFolderName)
+		{
+			var projectIdentitiesByFilePath = this.InModifyContext(solutionFilePath,
+				(solutionFile, _) =>
+				{
+					// Acquire the solution folder identity (adding the solution folder if need be).
+					var solutionFolderIdentity = this.Acquire_SolutionFolderIdentity(solutionFile, solutionFolderName);
+
+					// First add the project.
+					var projectIdentitiesByFilePath = this.AddProjects(
+						solutionFile,
+						solutionFilePath,
+						projectFilePaths);
+
+					// Then add the solution folder nestings.
+					var nestedProjectsGlobalSection = Instances.GlobalSectionOperator.Acquire_NestedProjects(solutionFile);
+
+					var projectNestings = projectIdentitiesByFilePath.Values
+						.Select(projectIdentity =>
+						{
+							var projectNesting = new ProjectNesting()
+							{
+								ChildProjectIdentity = projectIdentity,
+								ParentProjectIdentity = solutionFolderIdentity,
+							};
+
+							return projectNesting;
+						});
+
+					nestedProjectsGlobalSection.ProjectNestings.AddRange(projectNestings);
+
+					return projectIdentitiesByFilePath;
+				});
+
+			return projectIdentitiesByFilePath;
+		}
+
 		public Guid Acquire_SolutionFolderIdentity(
 			SolutionFile solutionFile,
 			string solutionFolderName)
@@ -97,6 +139,52 @@ namespace R5T.F0024
 				;
 
 			return solutionFolderIdentity;
+		}
+
+		/// <summary>
+		/// Gets all project references that are not solution folders.
+		/// </summary>
+		public ProjectFileReference[] Get_NonSolutionFolderProjectFileReferences(SolutionFile solutionFile)
+        {
+			var output = solutionFile.ProjectFileReferences
+				.WhereIsNotSolutionFolder()
+				.ToArray();
+
+			return output;
+        }
+
+		/// <summary>
+		/// Quality-of-life overload for <see cref="Get_NonSolutionFolderProjectFileReferences(SolutionFile)"/>.
+		/// </summary>
+		public ProjectFileReference[] Get_ProjectFileReferences(SolutionFile solutionFile)
+		{
+			var output = this.Get_NonSolutionFolderProjectFileReferences(solutionFile);
+			return output;
+		}
+
+		public string[] Get_ProjectReferenceFilePaths(
+			SolutionFile solutionFile,
+			string solutionFilePath)
+        {
+			var projectFileReferences = solutionFile.GetProjectFileReferences();
+
+			var projectFileReferecePaths = projectFileReferences
+				.Select(projectFileReference => Instances.PathOperator.GetProjectFilePath(
+					solutionFilePath,
+					projectFileReference.ProjectRelativeFilePath))
+				.ToArray();
+
+			return projectFileReferecePaths;
+		}
+
+		public string[] Get_ProjectReferenceFilePaths(
+			string solutionFilePath)
+        {
+			var projectReferenceFilePaths = Instances.SolutionFileOperator.InReadContext(
+				solutionFilePath,
+				Instances.SolutionFileOperator.Get_ProjectReferenceFilePaths);
+
+			return projectReferenceFilePaths;
 		}
 
 		public Guid Get_SolutionFolderIdentity(SolutionFile solutionFile, string solutionFolderName)
@@ -135,7 +223,7 @@ namespace R5T.F0024
 			string solutionFolderName,
 			Guid solutionFolderIdentity)
 		{
-			Internal.InReserializedContext(solutionFilePath,
+			this.InModifyContext(solutionFilePath,
 				(solutionFile, _) =>
 				{
 					var projectFileReference = new ProjectFileReference
@@ -154,7 +242,7 @@ namespace R5T.F0024
 			string solutionFilePath,
 			string solutionFolderName)
         {
-			Internal.InReserializedContext(solutionFilePath,
+			this.InModifyContext(solutionFilePath,
 				(solutionFile, _) =>
 				{
 					this.AddSolutionFolder(solutionFile, solutionFolderName);
@@ -224,7 +312,7 @@ namespace R5T.F0024
 			string solutionFilePath,
 			string projectFilePath)
         {
-			var projectIdentity = Internal.InReserializedContext(solutionFilePath,
+			var projectIdentity = this.InModifyContext(solutionFilePath,
 				(solutionFile, _) =>
 				{
 					var projectIdentity = this.AddProject(
@@ -236,6 +324,24 @@ namespace R5T.F0024
 				});
 
 			return projectIdentity;
+		}
+
+		public Dictionary<string, Guid> AddProjects(
+			string solutionFilePath,
+			IEnumerable<string> projectFilePaths)
+		{
+			var projectIdentitiesByFilePath = this.InModifyContext(solutionFilePath,
+				(solutionFile, _) =>
+				{
+					var projectIdentitiesByFilePath = this.AddProjects(
+						solutionFile,
+						solutionFilePath,
+						projectFilePaths);
+
+					return projectIdentitiesByFilePath;
+				});
+
+			return projectIdentitiesByFilePath;
 		}
 
 		public Guid AddProject(
@@ -254,12 +360,30 @@ namespace R5T.F0024
 			return projectIdentity;
 		}
 
+		public Dictionary<string, Guid> AddProjects(
+			SolutionFile solutionFile,
+			string solutionFilePath,
+			IEnumerable<string> projectFilePaths)
+		{
+			var projectIdentitiesByFilePath = projectFilePaths
+				.ToDictionary(
+					projectFilePath => projectFilePath,
+					_ => Instances.GuidOperator.New());
+
+			this.AddProjects(
+				solutionFile,
+				solutionFilePath,
+				projectIdentitiesByFilePath);
+
+			return projectIdentitiesByFilePath;
+		}
+
 		public void AddProject(
 			string solutionFilePath,
 			string projectFilePath,
 			Guid projectIdentity)
         {
-			Internal.InReserializedContext(solutionFilePath,
+			this.InModifyContext(solutionFilePath,
 				(solutionFile, _) =>
 				{
 					this.AddProject(
@@ -317,6 +441,76 @@ namespace R5T.F0024
 				solutionConfigurationPlatforms);
         }
 
+		public void AddProjects(
+			SolutionFile solutionFile,
+			string solutionFilePath,
+			IDictionary<string, Guid> projectIdentitiesByFilePath)
+		{
+			var projectRelativeFilePathsByFilePath = projectIdentitiesByFilePath
+				.ToDictionary(
+					xPair => xPair.Key,
+					xPair => Instances.PathOperator.GetProjectRelativeFilePath(
+						solutionFilePath,
+						xPair.Key));
+
+			var wasFoundByProjectFilePath = Internal.HasProjects(
+				solutionFile,
+				solutionFilePath,
+				projectIdentitiesByFilePath.Keys);
+
+			if (wasFoundByProjectFilePath.Values.AnyWereFound())
+			{
+				var alreadyAddProjectRelativeFilePaths = wasFoundByProjectFilePath.Values.ValuesFound()
+					.Select(x => x.ProjectRelativeFilePath);
+
+				var text = StringOperator.Instance.Join(
+					Z0000.Strings.Instance.NewLineForEnvironment,
+					alreadyAddProjectRelativeFilePaths);
+
+				throw new InvalidOperationException($"Cannot add project. Solution already has projects:\n{text}");
+			}
+
+            // Add the project file references.
+            foreach (var pair in projectIdentitiesByFilePath)
+            {
+				var projectFilePath = pair.Key;
+				var projectIdentity = pair.Value;
+				var projectRelativeFilePath = projectRelativeFilePathsByFilePath[projectFilePath];
+
+				var projectFileNameStem = Instances.PathOperator_Base.GetFileNameStem(projectFilePath);
+
+				// The project name is just the file name stem of the project file.
+				var projectName = projectFileNameStem;
+
+				var projectTypeIdentity = Instances.ProjectFileOperator.GetProjectTypeIdentity_ForSolutionFile(projectFilePath);
+
+				var projectFileReference = new ProjectFileReference
+				{
+					ProjectIdentity = projectIdentity,
+					ProjectName = projectName,
+					ProjectRelativeFilePath = projectRelativeFilePath,
+					ProjectTypeIdentity = projectTypeIdentity,
+				};
+
+				Instances.SolutionFileOperator_Internal.AddProjectReference(solutionFile, projectFileReference);
+			}
+
+			// Add values to global sections.
+			var solutionConfigurationPlatforms = Instances.GlobalSectionOperator.Acquire_SolutionConfigurationPlatforms(solutionFile);
+
+			var projectConfigurationPlatforms = Instances.GlobalSectionOperator.Acquire_ProjectConfigurationPlatforms(solutionFile);
+
+            foreach (var pair in projectIdentitiesByFilePath)
+            {
+				var projectIdentity = pair.Value;
+
+				Instances.GlobalSectionOperator.AddProjectConfigurations(
+					projectConfigurationPlatforms,
+					projectIdentity,
+					solutionConfigurationPlatforms);
+            }
+		}
+
 		public SolutionFile Deserialize(string solutionFilePath)
 		{
 			var output = Instances.SolutionFileSerializer.Deserialize(solutionFilePath);
@@ -372,9 +566,98 @@ namespace R5T.F0024
 			return output;
 		}
 
+		public void InModifyContext(string solutionFilePath,
+				Action<SolutionFile, string> solutionFileAction)
+		{
+			var solutionFile = Instances.SolutionFileSerializer.Deserialize(solutionFilePath);
+
+			solutionFileAction(solutionFile, solutionFilePath);
+
+			Instances.SolutionFileSerializer.Serialize(solutionFilePath, solutionFile);
+		}
+
+		public TOutput InModifyContext<TOutput>(string solutionFilePath,
+			Func<SolutionFile, string, TOutput> solutionFileFunction)
+		{
+			var solutionFile = Instances.SolutionFileSerializer.Deserialize(solutionFilePath);
+
+			var output = solutionFileFunction(solutionFile, solutionFilePath);
+
+			Instances.SolutionFileSerializer.Serialize(solutionFilePath, solutionFile);
+
+			return output;
+		}
+
+		public void InReadContext(string solutionFilePath,
+			Action<SolutionFile, string> solutionFileAction)
+        {
+			var solutionFile = Instances.SolutionFileSerializer.Deserialize(solutionFilePath);
+
+			solutionFileAction(solutionFile, solutionFilePath);
+		}
+
+		public Task InReadContext(string solutionFilePath,
+			Func<SolutionFile, string, Task> solutionFileAction)
+		{
+			var solutionFile = Instances.SolutionFileSerializer.Deserialize(solutionFilePath);
+
+			return solutionFileAction(solutionFile, solutionFilePath);
+		}
+
+		public TOutput InReadContext<TOutput>(string solutionFilePath,
+			Func<SolutionFile, string, TOutput> solutionFileFunction)
+		{
+			var solutionFile = Instances.SolutionFileSerializer.Deserialize(solutionFilePath);
+
+			var output = solutionFileFunction(solutionFile, solutionFilePath);
+			return output;
+		}
+
+		public Task<TOutput> InReadContext<TOutput>(string solutionFilePath,
+			Func<SolutionFile, string, Task<TOutput>> solutionFileFunction)
+		{
+			var solutionFile = Instances.SolutionFileSerializer.Deserialize(solutionFilePath);
+
+			return solutionFileFunction(solutionFile, solutionFilePath);
+		}
+
+		/// <summary>
+		/// Examines file context to determine if a file is a solution file.
+		/// </summary>
+		public bool IsSolutionFile(string possibleSolutionFilePath)
+        {
+			// File exists?
+			Instances.FileSystemOperator.VerifyFileExists(possibleSolutionFilePath);
+
+			// Solution files should have the byte-order-mark.
+			var hasByteOrderMark = Instances.FileOperator.HasByteOrderMark(possibleSolutionFilePath);
+
+			if(!hasByteOrderMark)
+            {
+				return false;
+            }
+
+			// Solution file should have a second line.
+			var lines = Instances.FileOperator.ReadAllLines_Synchronous(possibleSolutionFilePath);
+
+			var secondLine = lines.Second();
+
+			// And the second line should start with "Microsoft Visual Studio Solution File".
+			var correctSecondLineStart = secondLine.StartsWith(
+				Instances.Strings.MicrosoftVisualStudioSolutionFile);
+
+			if(!correctSecondLineStart)
+            {
+				return false;
+            }
+
+			// Success.
+			return true;
+		}
+
 		public void RemoveProject(string solutionFilePath, string projectFilePath)
         {
-			Internal.InReserializedContext(solutionFilePath,
+			this.InModifyContext(solutionFilePath,
 				(solutionFile, _) =>
 				{
 					// Check to see if the project even exists.
@@ -476,6 +759,34 @@ namespace R5T.F0024
 				return output;
             }
 
+			public Dictionary<string, WasFound<ProjectFileReference>> HasProjects(
+				SolutionFile solutionFile,
+				string solutionFilePath,
+				IEnumerable<string> projectFilePaths)
+			{
+				var projectRelativeFilePathsByFilePath = Instances.PathOperator.GetProjectRelativeFilePathsByFilePath(
+					solutionFilePath,
+					projectFilePaths);
+
+				var projectFileReferencesByRelativeFilePath = solutionFile.GetProjectFileReferences()
+					.ToDictionary(
+						projectFileReference => projectFileReference.ProjectRelativeFilePath,
+						projectFileReference => projectFileReference);
+
+				var join =
+					from xPair in projectRelativeFilePathsByFilePath
+					join yPair in projectFileReferencesByRelativeFilePath on xPair.Value equals yPair.Key into groupJoin
+					from joinPair in groupJoin.DefaultIfEmpty()
+					select new { ProjectFilePath = xPair.Key, ProjectFileReference = joinPair.Value };
+
+				var output = join
+					.ToDictionary(
+						x => x.ProjectFilePath,
+						x => WasFound.From(x.ProjectFileReference));
+
+				return output;
+			}
+
 			public WasFound<ProjectFileReference> HasProject(
 				SolutionFile solutionFile,
 				string projectRelativeFilePath)
@@ -488,28 +799,6 @@ namespace R5T.F0024
 				var output = WasFound.From(projectOrDefault);
 				return output;
             }
-
-			public void InReserializedContext(string solutionFilePath,
-				Action<SolutionFile, string> solutionFileAction)
-            {
-				var solutionFile = Instances.SolutionFileSerializer.Deserialize(solutionFilePath);
-
-				solutionFileAction(solutionFile, solutionFilePath);
-
-				Instances.SolutionFileSerializer.Serialize(solutionFilePath, solutionFile);
-			}
-
-			public TOutput InReserializedContext<TOutput>(string solutionFilePath,
-				Func<SolutionFile, string, TOutput> solutionFileFunction)
-			{
-				var solutionFile = Instances.SolutionFileSerializer.Deserialize(solutionFilePath);
-
-				var output = solutionFileFunction(solutionFile, solutionFilePath);
-
-				Instances.SolutionFileSerializer.Serialize(solutionFilePath, solutionFile);
-
-				return output;
-			}
 		}
     }
 }

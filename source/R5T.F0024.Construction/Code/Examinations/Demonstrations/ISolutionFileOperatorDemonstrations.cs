@@ -1,4 +1,6 @@
 using System;
+using System.Linq;
+using System.Threading.Tasks;
 
 using R5T.T0141;
 
@@ -8,6 +10,66 @@ namespace R5T.F0024.Construction
 	[DemonstrationsMarker]
 	public partial interface ISolutionFileOperatorDemonstrations : IDemonstrationsMarker
 	{
+		public void ListMissingProjectReferences()
+		{
+			var solutionFilePath = @"C:\Code\DEV\Git\GitHub\SafetyCone\R5T.F0016\source\R5T.F0016.Construction.sln";
+
+			var projectReferenceFilePaths = Instances.SolutionFileOperator.Get_ProjectReferenceFilePaths(solutionFilePath);
+
+			var projectReferencesCount = projectReferenceFilePaths.Length;
+
+			var alphabeticalProjectReferenceFilePaths = projectReferenceFilePaths.OrderAlphabetically();
+
+			var lines = Instances.EnumerableOperator.From($"For solution:\n\n\t{solutionFilePath}\n")
+				.Append($"({projectReferencesCount}) Project References:\n")
+				.Append(alphabeticalProjectReferenceFilePaths)
+				;
+
+			Instances.FileOperator.WriteLines(
+				Instances.FilePaths.OutputTextFilePath,
+				lines);
+
+			Instances.NotepadPlusPlusOperator.Open(
+				Instances.FilePaths.OutputTextFilePath);
+		}
+
+		public async Task ListAllRecursiveProjectReferences()
+        {
+			var solutionFilePath = @"C:\Code\DEV\Git\GitHub\SafetyCone\R5T.F0024\source\R5T.F0024.Construction.sln";
+
+			var allRecursiveProjectReferences = await Instances.SolutionOperations.GetAllRecursiveProjectReferences(solutionFilePath);
+
+			var lines = Instances.TextOutputGenerator.GetAllRecursiveSolutionProjectReferencesOutputLines(
+				solutionFilePath,
+				allRecursiveProjectReferences);
+
+			Instances.Operations.WriteLinesAndOpenInNotepadPlusPlus(
+				lines);
+		}
+
+		public void ListProjectReferences()
+        {
+			var solutionFilePath = @"C:\Code\DEV\Git\GitHub\SafetyCone\R5T.F0016\source\R5T.F0016.Construction.sln";
+
+			var projectReferenceFilePaths = Instances.SolutionFileOperator.Get_ProjectReferenceFilePaths(solutionFilePath);
+
+			var projectReferencesCount = projectReferenceFilePaths.Length;
+
+			var alphabeticalProjectReferenceFilePaths = projectReferenceFilePaths.OrderAlphabetically();
+
+			var lines = Instances.EnumerableOperator.From($"For solution:\n\n\t{solutionFilePath}\n")
+				.Append($"({projectReferencesCount}) Project References:\n")
+				.Append(alphabeticalProjectReferenceFilePaths)
+				;
+
+			Instances.FileOperator.WriteLines(
+				Instances.FilePaths.OutputTextFilePath,
+				lines);
+
+			Instances.NotepadPlusPlusOperator.Open(
+				Instances.FilePaths.OutputTextFilePath);
+        }
+
 		public void GetAndSetSolutionIdentity()
         {
 			var originalSolutionFilePath = @"C:\Temp\Solution.sln";

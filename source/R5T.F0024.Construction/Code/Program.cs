@@ -1,11 +1,12 @@
 using System;
+using System.Threading.Tasks;
 
 
 namespace R5T.F0024.Construction
 {
     class Program
     {
-        static void Main()
+        static async Task Main()
         {
             //Program.RoundTripDeserializeThenSerializeSolutionFile();
             //Program.DeserializeSolutionFile();
@@ -21,7 +22,9 @@ namespace R5T.F0024.Construction
             //Instances.SolutionFileOperatorDemonstrations.AddSolutionFolder();
             //Instances.SolutionFileOperatorDemonstrations.AddProjectInSolutionFolder();
             //Instances.SolutionFileOperatorDemonstrations.RemoveProjectFromSolutionFolder();
-            Instances.SolutionFileOperatorDemonstrations.GetAndSetSolutionIdentity();
+            //Instances.SolutionFileOperatorDemonstrations.GetAndSetSolutionIdentity();
+            //Instances.SolutionFileOperatorDemonstrations.ListProjectReferences();
+            await Instances.SolutionFileOperatorDemonstrations.ListAllRecursiveProjectReferences();
         }
 
 #pragma warning disable IDE0051 // Remove unused private members
