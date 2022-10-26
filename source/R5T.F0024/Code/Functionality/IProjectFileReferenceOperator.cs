@@ -20,5 +20,14 @@ namespace R5T.F0024
 
 			return output;
 		}
+
+		public IEnumerable<ProjectFileReference> WhereIsSolutionFolder(IEnumerable<ProjectFileReference> projectFileReferences)
+		{
+			var output = projectFileReferences
+				.Where(projectFileReference => projectFileReference.ProjectTypeIdentity == Instances.ProjectTypeIdentities.SolutionFolder)
+				;
+
+			return output;
+		}
 	}
 }

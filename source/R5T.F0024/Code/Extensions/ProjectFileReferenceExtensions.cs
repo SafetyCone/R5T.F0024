@@ -15,5 +15,11 @@ namespace System.Linq
 			var output = Instances.ProjectFileReferenceOperator.WhereIsNotSolutionFolder(projectFileReferences);
 			return output;
 		}
+
+		public static IEnumerable<ProjectFileReference> WhereIsSolutionFolder(this IEnumerable<ProjectFileReference> projectFileReferences)
+		{
+			var output = Instances.ProjectFileReferenceOperator.WhereIsSolutionFolder(projectFileReferences);
+			return output;
+		}
 	}
 }

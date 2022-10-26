@@ -11,7 +11,7 @@ using R5T.F0024.T001;
 
 namespace R5T.F0024
 {
-	[FunctionalityMarker]
+    [FunctionalityMarker]
 	public partial interface ISolutionFileOperator : IFunctionalityMarker
 	{
 		private static Internal.ISolutionFileOperator Internal { get; } = F0024.Internal.SolutionFileOperator.Instance;
@@ -23,7 +23,7 @@ namespace R5T.F0024
 			string solutionFolderName,
 			Guid projectIdentity)
         {
-			this.InModifyContext(solutionFilePath,
+			this.InModifyContext_Synchronous(solutionFilePath,
 				(solutionFile, _) =>
 				{
 					// Acquire the solution folder identity (adding the solution folder if need be).
@@ -56,7 +56,7 @@ namespace R5T.F0024
 			string projectFilePath,
 			string solutionFolderName)
         {
-			var projectIdentity = this.InModifyContext(solutionFilePath,
+			var projectIdentity = this.InModifyContext_Synchronous(solutionFilePath,
 				(solutionFile, _) =>
 				{
 					// Acquire the solution folder identity (adding the solution folder if need be).
@@ -90,7 +90,7 @@ namespace R5T.F0024
 			IEnumerable<string> projectFilePaths,
 			string solutionFolderName)
 		{
-			var projectIdentitiesByFilePath = this.InModifyContext(solutionFilePath,
+			var projectIdentitiesByFilePath = this.InModifyContext_Synchronous(solutionFilePath,
 				(solutionFile, _) =>
 				{
 					// Acquire the solution folder identity (adding the solution folder if need be).
@@ -155,11 +155,25 @@ namespace R5T.F0024
 
 		/// <summary>
 		/// Quality-of-life overload for <see cref="Get_NonSolutionFolderProjectFileReferences(SolutionFile)"/>.
+		/// <para><inheritdoc cref="Get_NonSolutionFolderProjectFileReferences(SolutionFile)" path="/summary"/></para>
 		/// </summary>
 		public ProjectFileReference[] Get_ProjectFileReferences(SolutionFile solutionFile)
 		{
 			var output = this.Get_NonSolutionFolderProjectFileReferences(solutionFile);
 			return output;
+		}
+
+		public string[] Get_ProjectReferenceFilePaths(
+			IEnumerable<ProjectFileReference> projectFileReferences,
+			string solutionFilePath)
+		{
+			var projectFileReferecePaths = projectFileReferences
+				.Select(projectFileReference => Instances.PathOperator.GetProjectFilePath(
+					solutionFilePath,
+					projectFileReference.ProjectRelativeFilePath))
+				.ToArray();
+
+			return projectFileReferecePaths;
 		}
 
 		public string[] Get_ProjectReferenceFilePaths(
@@ -223,7 +237,7 @@ namespace R5T.F0024
 			string solutionFolderName,
 			Guid solutionFolderIdentity)
 		{
-			this.InModifyContext(solutionFilePath,
+			this.InModifyContext_Synchronous(solutionFilePath,
 				(solutionFile, _) =>
 				{
 					var projectFileReference = new ProjectFileReference
@@ -242,7 +256,7 @@ namespace R5T.F0024
 			string solutionFilePath,
 			string solutionFolderName)
         {
-			this.InModifyContext(solutionFilePath,
+			this.InModifyContext_Synchronous(solutionFilePath,
 				(solutionFile, _) =>
 				{
 					this.AddSolutionFolder(solutionFile, solutionFolderName);
@@ -263,6 +277,9 @@ namespace R5T.F0024
 			return solutionFolderIdentity;
 		}
 
+		/// <summary>
+		/// Adds on the project reference (not any of the project configurations, project nestings, etc.).
+		/// </summary>
 		public void AddProjectReferenceOnly(
 			SolutionFile solutionFile,
 			ProjectFileReference projectFileReference)
@@ -270,6 +287,7 @@ namespace R5T.F0024
 			solutionFile.ProjectFileReferences.Add(projectFileReference);
         }
 
+		/// <inheritdoc cref="AddProjectReferenceOnly(SolutionFile, ProjectFileReference)"/>
 		public Guid AddProjectReferenceOnly(
 			SolutionFile solutionFile,
 			Guid projectTypeIdentity,
@@ -288,6 +306,7 @@ namespace R5T.F0024
 			return projectIdentity;
         }
 
+		/// <inheritdoc cref="AddProjectReferenceOnly(SolutionFile, ProjectFileReference)"/>
 		public void AddProjectReferenceOnly(
 			SolutionFile solutionFile,
 			Guid projectTypeIdentity,
@@ -312,7 +331,7 @@ namespace R5T.F0024
 			string solutionFilePath,
 			string projectFilePath)
         {
-			var projectIdentity = this.InModifyContext(solutionFilePath,
+			var projectIdentity = this.InModifyContext_Synchronous(solutionFilePath,
 				(solutionFile, _) =>
 				{
 					var projectIdentity = this.AddProject(
@@ -330,7 +349,7 @@ namespace R5T.F0024
 			string solutionFilePath,
 			IEnumerable<string> projectFilePaths)
 		{
-			var projectIdentitiesByFilePath = this.InModifyContext(solutionFilePath,
+			var projectIdentitiesByFilePath = this.InModifyContext_Synchronous(solutionFilePath,
 				(solutionFile, _) =>
 				{
 					var projectIdentitiesByFilePath = this.AddProjects(
@@ -383,7 +402,7 @@ namespace R5T.F0024
 			string projectFilePath,
 			Guid projectIdentity)
         {
-			this.InModifyContext(solutionFilePath,
+			this.InModifyContext_Synchronous(solutionFilePath,
 				(solutionFile, _) =>
 				{
 					this.AddProject(
@@ -566,7 +585,19 @@ namespace R5T.F0024
 			return output;
 		}
 
-		public void InModifyContext(string solutionFilePath,
+		public NestedProjectsGlobalSection Get_NestedProjectsGlobalSection(SolutionFile solutionFile)
+        {
+			var nestedProjectsGlobalSection = Instances.GlobalSectionOperator.Get_NestedProjects(solutionFile);
+			return nestedProjectsGlobalSection;
+        }
+
+		public WasFound<NestedProjectsGlobalSection> Has_NestedProjectsGlobalSection(SolutionFile solutionFile)
+		{
+			var wasFound = Instances.GlobalSectionOperator.Has_NestedProjects(solutionFile);
+			return wasFound;
+		}
+
+		public void InModifyContext_Synchronous(string solutionFilePath,
 				Action<SolutionFile, string> solutionFileAction)
 		{
 			var solutionFile = Instances.SolutionFileSerializer.Deserialize(solutionFilePath);
@@ -576,12 +607,34 @@ namespace R5T.F0024
 			Instances.SolutionFileSerializer.Serialize(solutionFilePath, solutionFile);
 		}
 
-		public TOutput InModifyContext<TOutput>(string solutionFilePath,
+		public async Task InModifyContext(string solutionFilePath,
+				Func<SolutionFile, string, Task> solutionFileAction)
+		{
+			var solutionFile = Instances.SolutionFileSerializer.Deserialize(solutionFilePath);
+
+			await solutionFileAction(solutionFile, solutionFilePath);
+
+			Instances.SolutionFileSerializer.Serialize(solutionFilePath, solutionFile);
+		}
+
+		public TOutput InModifyContext_Synchronous<TOutput>(string solutionFilePath,
 			Func<SolutionFile, string, TOutput> solutionFileFunction)
 		{
 			var solutionFile = Instances.SolutionFileSerializer.Deserialize(solutionFilePath);
 
 			var output = solutionFileFunction(solutionFile, solutionFilePath);
+
+			Instances.SolutionFileSerializer.Serialize(solutionFilePath, solutionFile);
+
+			return output;
+		}
+
+		public async Task<TOutput> InModifyContext<TOutput>(string solutionFilePath,
+			Func<SolutionFile, string, Task<TOutput>> solutionFileFunction)
+		{
+			var solutionFile = Instances.SolutionFileSerializer.Deserialize(solutionFilePath);
+
+			var output = await solutionFileFunction(solutionFile, solutionFilePath);
 
 			Instances.SolutionFileSerializer.Serialize(solutionFilePath, solutionFile);
 
@@ -655,57 +708,62 @@ namespace R5T.F0024
 			return true;
 		}
 
+		public void RemoveProject(SolutionFile solutionFile, string solutionFilePath, string projectFilePath)
+        {
+			// Check to see if the project even exists.
+			var projectRelativeFilePath = Instances.PathOperator.GetProjectRelativeFilePath(
+				solutionFilePath,
+				projectFilePath);
+
+			var hasProject = Internal.HasProject(
+				solutionFile,
+				projectRelativeFilePath);
+			if (!hasProject)
+			{
+				throw new InvalidOperationException($"Cannot remove project. Solution already has project: '{projectFilePath}'.");
+			}
+
+			// Else, remove the project.
+			// Remove the project file reference.
+			solutionFile.ProjectFileReferences.Remove(hasProject.Result);
+
+			// Remove the build configuration platforms for the project.
+			var projectConfigurationPlatforms = Instances.GlobalSectionOperator.Get_ProjectConfigurationPlatforms(solutionFile);
+
+			var projectIdentityToRemove = hasProject.Result.ProjectIdentity;
+
+			var projectBuildConfigurationMappingsToRemove = projectConfigurationPlatforms.ProjectBuildConfigurationMappings
+				.Where(x => x.ProjectIdentity == projectIdentityToRemove)
+				.ToArray();
+
+			foreach (var projectBuildConfigurationMapping in projectBuildConfigurationMappingsToRemove)
+			{
+				projectConfigurationPlatforms.ProjectBuildConfigurationMappings.Remove(projectBuildConfigurationMapping);
+			}
+
+			// If a nested project mapping for the project exists, remove it.
+			var hasNestedProjects = Instances.GlobalSectionOperator.Has_NestedProjects(solutionFile);
+			if (hasNestedProjects)
+			{
+				var nestedProjects = hasNestedProjects.Result;
+
+				var projectNestingsToRemove = nestedProjects.ProjectNestings
+					.Where(x => x.ChildProjectIdentity == projectIdentityToRemove)
+					.ToArray();
+
+				foreach (var projectNesting in projectNestingsToRemove)
+				{
+					nestedProjects.ProjectNestings.Remove(projectNesting);
+				}
+			}
+		}
+
 		public void RemoveProject(string solutionFilePath, string projectFilePath)
         {
-			this.InModifyContext(solutionFilePath,
-				(solutionFile, _) =>
+			this.InModifyContext_Synchronous(solutionFilePath,
+				(solutionFile, solutionFilePath) =>
 				{
-					// Check to see if the project even exists.
-					var projectRelativeFilePath = Instances.PathOperator.GetProjectRelativeFilePath(
-						solutionFilePath,
-						projectFilePath);
-
-					var hasProject = Internal.HasProject(
-						solutionFile,
-						projectRelativeFilePath);
-					if (!hasProject)
-					{
-						throw new InvalidOperationException($"Cannot remove project. Solution already has project: '{projectFilePath}'.");
-					}
-
-					// Else, remove the project.
-					// Remove the project file reference.
-					solutionFile.ProjectFileReferences.Remove(hasProject.Result);
-
-					// Remove the build configuration platforms for the project.
-					var projectConfigurationPlatforms = Instances.GlobalSectionOperator.Get_ProjectConfigurationPlatforms(solutionFile);
-
-					var projectIdentityToRemove = hasProject.Result.ProjectIdentity;
-
-					var projectBuildConfigurationMappingsToRemove = projectConfigurationPlatforms.ProjectBuildConfigurationMappings
-						.Where(x => x.ProjectIdentity == projectIdentityToRemove)
-						.ToArray();
-
-					foreach (var projectBuildConfigurationMapping in projectBuildConfigurationMappingsToRemove)
-					{
-						projectConfigurationPlatforms.ProjectBuildConfigurationMappings.Remove(projectBuildConfigurationMapping);
-					}
-
-					// If a nested project mapping for the project exists, remove it.
-					var hasNestedProjects = Instances.GlobalSectionOperator.Has_NestedProjects(solutionFile);
-					if(hasNestedProjects)
-                    {
-						var nestedProjects = hasNestedProjects.Result;
-
-						var projectNestingsToRemove = nestedProjects.ProjectNestings
-							.Where(x => x.ChildProjectIdentity == projectIdentityToRemove)
-							.ToArray();
-
-                        foreach (var projectNesting in projectNestingsToRemove)
-                        {
-							nestedProjects.ProjectNestings.Remove(projectNesting);
-                        }
-                    }
+					this.RemoveProject(solutionFile, solutionFilePath, projectFilePath);
 				});
 		}
 
@@ -727,7 +785,7 @@ namespace R5T.F0024
 
 	namespace Internal
     {
-		public partial interface ISolutionFileOperator
+        public partial interface ISolutionFileOperator
         {
 			public void AddGlobalSection(
 				SolutionFile solutionFile,

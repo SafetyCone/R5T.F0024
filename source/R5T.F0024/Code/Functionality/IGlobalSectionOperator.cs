@@ -1,15 +1,14 @@
 using System;
 using System.Linq;
-
-using R5T.F0000;
 using R5T.T0132;
 
+using R5T.F0000;
 using R5T.F0024.T001;
 
 
 namespace R5T.F0024
 {
-	[FunctionalityMarker]
+    [FunctionalityMarker]
 	public partial interface IGlobalSectionOperator : IFunctionalityMarker
 	{
         private static Internal.IGlobalSectionOperator Internal { get; } = F0024.Internal.GlobalSectionOperator.Instance;
@@ -48,6 +47,20 @@ namespace R5T.F0024
                 solutionFile,
                 Instances.GlobalSectionNames.NestedProjects,
                 this.New_NestedProjects);
+
+            return output;
+        }
+
+        public NestedProjectsGlobalSection Get_NestedProjects(SolutionFile solutionFile)
+        {
+            var output = Internal.Has_GlobalSection<NestedProjectsGlobalSection>(
+                solutionFile,
+                Instances.GlobalSectionNames.NestedProjects);
+
+            if(!output)
+            {
+                throw new Exception("No nested projects global section found.");
+            }
 
             return output;
         }
