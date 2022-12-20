@@ -532,7 +532,7 @@ namespace R5T.F0024
 
 		public SolutionFile Deserialize(string solutionFilePath)
 		{
-			var output = Instances.SolutionFileSerializer.Deserialize(solutionFilePath);
+			var output = Instances.SolutionFileSerializer.Deserialize_Synchronous(solutionFilePath);
 			return output;
 		}
 
@@ -600,31 +600,31 @@ namespace R5T.F0024
 		public void InModifyContext_Synchronous(string solutionFilePath,
 				Action<SolutionFile, string> solutionFileAction)
 		{
-			var solutionFile = Instances.SolutionFileSerializer.Deserialize(solutionFilePath);
+			var solutionFile = Instances.SolutionFileSerializer.Deserialize_Synchronous(solutionFilePath);
 
 			solutionFileAction(solutionFile, solutionFilePath);
 
-			Instances.SolutionFileSerializer.Serialize(solutionFilePath, solutionFile);
+			Instances.SolutionFileSerializer.Serialize_Synchronous(solutionFilePath, solutionFile);
 		}
 
 		public async Task InModifyContext(string solutionFilePath,
 				Func<SolutionFile, string, Task> solutionFileAction)
 		{
-			var solutionFile = Instances.SolutionFileSerializer.Deserialize(solutionFilePath);
+			var solutionFile = Instances.SolutionFileSerializer.Deserialize_Synchronous(solutionFilePath);
 
 			await solutionFileAction(solutionFile, solutionFilePath);
 
-			Instances.SolutionFileSerializer.Serialize(solutionFilePath, solutionFile);
+			Instances.SolutionFileSerializer.Serialize_Synchronous(solutionFilePath, solutionFile);
 		}
 
 		public TOutput InModifyContext_Synchronous<TOutput>(string solutionFilePath,
 			Func<SolutionFile, string, TOutput> solutionFileFunction)
 		{
-			var solutionFile = Instances.SolutionFileSerializer.Deserialize(solutionFilePath);
+			var solutionFile = Instances.SolutionFileSerializer.Deserialize_Synchronous(solutionFilePath);
 
 			var output = solutionFileFunction(solutionFile, solutionFilePath);
 
-			Instances.SolutionFileSerializer.Serialize(solutionFilePath, solutionFile);
+			Instances.SolutionFileSerializer.Serialize_Synchronous(solutionFilePath, solutionFile);
 
 			return output;
 		}
@@ -632,19 +632,63 @@ namespace R5T.F0024
 		public async Task<TOutput> InModifyContext<TOutput>(string solutionFilePath,
 			Func<SolutionFile, string, Task<TOutput>> solutionFileFunction)
 		{
-			var solutionFile = Instances.SolutionFileSerializer.Deserialize(solutionFilePath);
+			var solutionFile = Instances.SolutionFileSerializer.Deserialize_Synchronous(solutionFilePath);
 
 			var output = await solutionFileFunction(solutionFile, solutionFilePath);
 
-			Instances.SolutionFileSerializer.Serialize(solutionFilePath, solutionFile);
+			Instances.SolutionFileSerializer.Serialize_Synchronous(solutionFilePath, solutionFile);
 
 			return output;
 		}
 
-		public void InReadContext(string solutionFilePath,
+		public async Task InQueryContext(string solutionFilePath,
+			Func<SolutionFile, Task> solutionFileAction = default)
+		{
+			var solutionFile = Instances.SolutionFileSerializer.Deserialize_Synchronous(solutionFilePath);
+
+			await ActionOperator.Instance.Run(
+				solutionFileAction,
+				solutionFile);
+		}
+
+        public async Task<TOutput> InQueryContext<TOutput>(string solutionFilePath,
+            Func<SolutionFile, Task<TOutput>> solutionFileAction = default)
+        {
+            var solutionFile = Instances.SolutionFileSerializer.Deserialize_Synchronous(solutionFilePath);
+
+            var output = await ActionOperator.Instance.Run(
+                solutionFileAction,
+                solutionFile);
+
+			return output;
+        }
+
+        public void InQueryContext_Synchronous(string solutionFilePath,
+            Action<SolutionFile> solutionFileAction = default)
+        {
+            var solutionFile = Instances.SolutionFileSerializer.Deserialize_Synchronous(solutionFilePath);
+
+            ActionOperator.Instance.Run(
+                solutionFileAction,
+                solutionFile);
+        }
+
+        public TOutput InQueryContext_Synchronous<TOutput>(string solutionFilePath,
+            Func<SolutionFile, TOutput> solutionFileAction = default)
+        {
+            var solutionFile = Instances.SolutionFileSerializer.Deserialize_Synchronous(solutionFilePath);
+
+            var output = ActionOperator.Instance.Run(
+                solutionFileAction,
+                solutionFile);
+
+            return output;
+        }
+
+        public void InReadContext(string solutionFilePath,
 			Action<SolutionFile, string> solutionFileAction)
         {
-			var solutionFile = Instances.SolutionFileSerializer.Deserialize(solutionFilePath);
+			var solutionFile = Instances.SolutionFileSerializer.Deserialize_Synchronous(solutionFilePath);
 
 			solutionFileAction(solutionFile, solutionFilePath);
 		}
@@ -652,7 +696,7 @@ namespace R5T.F0024
 		public Task InReadContext(string solutionFilePath,
 			Func<SolutionFile, string, Task> solutionFileAction)
 		{
-			var solutionFile = Instances.SolutionFileSerializer.Deserialize(solutionFilePath);
+			var solutionFile = Instances.SolutionFileSerializer.Deserialize_Synchronous(solutionFilePath);
 
 			return solutionFileAction(solutionFile, solutionFilePath);
 		}
@@ -660,7 +704,7 @@ namespace R5T.F0024
 		public TOutput InReadContext<TOutput>(string solutionFilePath,
 			Func<SolutionFile, string, TOutput> solutionFileFunction)
 		{
-			var solutionFile = Instances.SolutionFileSerializer.Deserialize(solutionFilePath);
+			var solutionFile = Instances.SolutionFileSerializer.Deserialize_Synchronous(solutionFilePath);
 
 			var output = solutionFileFunction(solutionFile, solutionFilePath);
 			return output;
@@ -669,7 +713,7 @@ namespace R5T.F0024
 		public Task<TOutput> InReadContext<TOutput>(string solutionFilePath,
 			Func<SolutionFile, string, Task<TOutput>> solutionFileFunction)
 		{
-			var solutionFile = Instances.SolutionFileSerializer.Deserialize(solutionFilePath);
+			var solutionFile = Instances.SolutionFileSerializer.Deserialize_Synchronous(solutionFilePath);
 
 			return solutionFileFunction(solutionFile, solutionFilePath);
 		}
@@ -771,7 +815,7 @@ namespace R5T.F0024
 			string solutionFilePath,
 			SolutionFile solutionFile)
         {
-			Instances.SolutionFileSerializer.Serialize(solutionFilePath, solutionFile);
+			Instances.SolutionFileSerializer.Serialize_Synchronous(solutionFilePath, solutionFile);
         }
 
 		public void Set_SolutionIdentity(SolutionFile solutionFile, Guid solutionIdentity)
@@ -789,7 +833,7 @@ namespace R5T.F0024
         {
 			public void AddGlobalSection(
 				SolutionFile solutionFile,
-				IGlobalSection globalSection)
+                IGlobalSection globalSection)
             {
 				solutionFile.GlobalSections.Add(globalSection);
             }

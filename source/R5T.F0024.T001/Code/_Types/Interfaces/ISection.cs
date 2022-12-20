@@ -6,9 +6,9 @@ namespace R5T.F0024.T001
     /// <summary>
     /// Defines a common abstraction for Visual Studio solution file global sections.
     /// </summary>
-    public interface IGlobalSection
+    public interface ISection
     {
         string Name { get; }
-        PreOrPostSolution PreOrPostSolution { get; }
+        public string PreOrPost { get; set; }
     }
 }

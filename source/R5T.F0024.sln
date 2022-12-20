@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 16
-VisualStudioVersion = 16.0.30114.105
+# Visual Studio Version 17
+VisualStudioVersion = 17.2.32630.192
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "R5T.F0024", "R5T.F0024\R5T.F0024.csproj", "{081E5A56-66D6-4DA2-8A2B-FA96F63063B6}"
 EndProject
@@ -10,13 +10,13 @@ Global
 		Debug|Any CPU = Debug|Any CPU
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
-	GlobalSection(SolutionProperties) = preSolution
-		HideSolutionNode = FALSE
-	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{081E5A56-66D6-4DA2-8A2B-FA96F63063B6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{081E5A56-66D6-4DA2-8A2B-FA96F63063B6}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{081E5A56-66D6-4DA2-8A2B-FA96F63063B6}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{081E5A56-66D6-4DA2-8A2B-FA96F63063B6}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
 	EndGlobalSection
 EndGlobal

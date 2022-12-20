@@ -16,3 +16,20 @@ namespace R5T.F0024
 	    #endregion
 	}
 }
+
+
+namespace R5T.F0024.Internal
+{
+    public class SolutionFileSerializer : ISolutionFileSerializer
+    {
+        #region Infrastructure
+
+        public static ISolutionFileSerializer Instance { get; } = new SolutionFileSerializer();
+
+        private SolutionFileSerializer()
+        {
+        }
+
+        #endregion
+    }
+}

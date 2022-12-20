@@ -3,7 +3,7 @@
 
 namespace R5T.F0024.T001
 {
-    public class ExtensibilityGlobalsGlobalSection : GlobalSectionBase
+    public class ExtensibilityGlobalsGlobalSection : SectionBase, IGlobalSection
     {
         public Guid SolutionIdentity { get; set; }
     }

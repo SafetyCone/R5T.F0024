@@ -16,7 +16,7 @@ namespace R5T.F0024
 			var extensibilityGlobalsSection = new ExtensibilityGlobalsGlobalSection()
 			{
 				Name = Instances.GlobalSectionNames.ExtensibilityGlobals,
-				PreOrPostSolution = PreOrPostSolution.PostSolution,
+				PreOrPost = SolutionFileStrings.Instance.PostSolution,
 				SolutionIdentity = solutionIdentity,
 			};
 
@@ -39,8 +39,8 @@ namespace R5T.F0024
 			var solutionPropertiesGloblaSection = new LinesBasedGlobalSection()
 			{
 				Name = Instances.GlobalSectionNames.SolutionProperties,
-				PreOrPostSolution = PreOrPostSolution.PreSolution,
-				Lines = new List<string>()
+                PreOrPost = SolutionFileStrings.Instance.PreSolution,
+                Lines = new List<string>()
 				{
 					"HideSolutionNode = FALSE",
 				},

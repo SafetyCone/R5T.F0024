@@ -37,8 +37,8 @@ namespace R5T.F0024
 		{
 			var projectsInSolution = this.GetProjects(solutionFilePath);
 
-			var projectsMissingFromSolution = projectsInSolution
-				.Except(desiredProjectFilePaths)
+			var projectsMissingFromSolution = desiredProjectFilePaths
+                .Except(projectsInSolution)
 				.Now();
 
 			return projectsMissingFromSolution;

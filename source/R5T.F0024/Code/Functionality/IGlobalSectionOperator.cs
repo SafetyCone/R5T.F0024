@@ -79,7 +79,7 @@ namespace R5T.F0024
             var output = new NestedProjectsGlobalSection
             {
                 Name = Instances.GlobalSectionNames.NestedProjects,
-                PreOrPostSolution = PreOrPostSolution.PreSolution,
+                PreOrPost = SolutionFileStrings.Instance.PreSolution,
             };
 
             return output;
@@ -127,7 +127,7 @@ namespace R5T.F0024
             var output = new ProjectConfigurationPlatformsGlobalSection
             {
                 Name = Instances.GlobalSectionNames.ProjectConfigurationPlatforms,
-                PreOrPostSolution = PreOrPostSolution.PostSolution,
+                PreOrPost = SolutionFileStrings.Instance.PostSolution,
             };
 
             return output;
@@ -178,7 +178,7 @@ namespace R5T.F0024
             var output = new SolutionConfigurationPlatformsGlobalSection
             {
                 Name = Instances.GlobalSectionNames.SolutionConfigurationPlatforms,
-                PreOrPostSolution = PreOrPostSolution.PreSolution,
+                PreOrPost = SolutionFileStrings.Instance.PreSolution,
             };
             return output;
         }
@@ -257,7 +257,7 @@ namespace R5T.F0024
             public WasFound<T> Has_GlobalSection<T>(
                 SolutionFile solutionFile,
                 string globalSectionName)
-                where T : IGlobalSection
+                where T : ISection
             {
                 var outputOrDefault = solutionFile.GlobalSections
                     .Where(x => x.Name == globalSectionName)
