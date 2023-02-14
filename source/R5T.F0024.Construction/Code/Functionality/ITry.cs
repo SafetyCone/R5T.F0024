@@ -21,9 +21,9 @@ namespace R5T.F0024.Construction
 			var outputSolutionFilePath = Z0015.FilePaths.Instance.OutputTextFilePath;
 
 			/// Run.
-			var solutionFile = SolutionFileSerializer.Instance.Deserialize(initialSolutionFilePath);
+			var solutionFile = SolutionFileSerializer.Instance.Deserialize_Synchronous(initialSolutionFilePath);
 
-			SolutionFileSerializer.Instance.Serialize(
+			SolutionFileSerializer.Instance.Serialize_Synchronous(
 				outputSolutionFilePath,
 				solutionFile);
 
