@@ -831,7 +831,7 @@ namespace R5T.F0024.Internal
             var lines = this.Serialize_ToLines(solutionFile);
 
             var text = StringOperator.Instance.Join(
-                Z0000.Strings.Instance.NewLineForEnvironment,
+                Z0000.Strings.Instance.NewLine_ForEnvironment,
                 lines);
 
             return text;

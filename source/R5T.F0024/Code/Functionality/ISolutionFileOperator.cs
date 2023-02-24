@@ -483,7 +483,7 @@ namespace R5T.F0024
 					.Select(x => x.ProjectRelativeFilePath);
 
 				var text = StringOperator.Instance.Join(
-					Z0000.Strings.Instance.NewLineForEnvironment,
+					Z0000.Strings.Instance.NewLine_ForEnvironment,
 					alreadyAddProjectRelativeFilePaths);
 
 				throw new InvalidOperationException($"Cannot add project. Solution already has projects:\n{text}");
