@@ -64,11 +64,11 @@ namespace R5T.F0024
 		}
 
 		/// <summary>
-		/// Chooses <see cref="CreateNew_2019"/> as the default.
+		/// Chooses <see cref="CreateNew_2022"/> as the default.
 		/// </summary>
 		public SolutionFile CreateNew()
         {
-			var solutionFile = this.CreateNew_2019();
+			var solutionFile = this.CreateNew_2022();
 			return solutionFile;
         }
 
@@ -88,6 +88,16 @@ namespace R5T.F0024
 			modifier(solutionFile);
 
 			return solutionFile;
+		}
+
+		/// <inheritdoc cref="CreateNew()"/>
+		public void Create_New(string solutionFilePath)
+		{
+			var solutionFile = this.CreateNew();
+
+			Instances.SolutionFileSerializer.Serialize_Synchronous(
+				solutionFilePath,
+				solutionFile);
 		}
 
 		/// <summary>
