@@ -327,6 +327,7 @@ namespace R5T.F0024
 				projectFileReference);
         }
 
+		/// <inheritdoc cref="AddProject(SolutionFile, string, string)"/>
 		public Guid AddProject(
 			string solutionFilePath,
 			string projectFilePath)
@@ -363,6 +364,7 @@ namespace R5T.F0024
 			return projectIdentitiesByFilePath;
 		}
 
+		/// <inheritdoc cref="AddProject(SolutionFile, string, string, Guid)"/>
 		public Guid AddProject(
 			SolutionFile solutionFile,
 			string solutionFilePath,
@@ -413,6 +415,10 @@ namespace R5T.F0024
 				});
 		}
 
+		/// <summary>
+		/// Simply adds a project file reference to a solution.
+		/// (Does not update recursive project reference dependencies.)
+		/// </summary>
 		public void AddProject(
 			SolutionFile solutionFile,
 			string solutionFilePath,
@@ -838,6 +844,9 @@ namespace R5T.F0024
 				solutionFile.GlobalSections.Add(globalSection);
             }
 
+			/// <summary>
+			/// Simply adds the project file reference.
+			/// </summary>
 			public void AddProjectReference(
 				SolutionFile solutionFile,
 				ProjectFileReference projectFileReference)
