@@ -603,8 +603,18 @@ namespace R5T.F0024
 			return wasFound;
 		}
 
-		public void InModifyContext_Synchronous(string solutionFilePath,
-				Action<SolutionFile, string> solutionFileAction)
+        public void InModifyContext_Synchronous(string solutionFilePath,
+            Action<SolutionFile> solutionFileAction)
+        {
+            var solutionFile = Instances.SolutionFileSerializer.Deserialize_Synchronous(solutionFilePath);
+
+            solutionFileAction(solutionFile);
+
+            Instances.SolutionFileSerializer.Serialize_Synchronous(solutionFilePath, solutionFile);
+        }
+
+        public void InModifyContext_Synchronous(string solutionFilePath,
+			Action<SolutionFile, string> solutionFileAction)
 		{
 			var solutionFile = Instances.SolutionFileSerializer.Deserialize_Synchronous(solutionFilePath);
 
@@ -761,13 +771,11 @@ namespace R5T.F0024
 		public void RemoveProject(SolutionFile solutionFile, string solutionFilePath, string projectFilePath)
         {
 			// Check to see if the project even exists.
-			var projectRelativeFilePath = Instances.PathOperator.GetProjectRelativeFilePath(
+			var hasProject = Internal.HasProject_ByProjectFilePath(
+				solutionFile,
 				solutionFilePath,
 				projectFilePath);
 
-			var hasProject = Internal.HasProject(
-				solutionFile,
-				projectRelativeFilePath);
 			if (!hasProject)
 			{
 				throw new InvalidOperationException($"Cannot remove project. Solution already has project: '{projectFilePath}'.");
@@ -830,86 +838,28 @@ namespace R5T.F0024
 
 			extensibilityGlobals.SolutionIdentity = solutionIdentity;
 		}
-	}
 
-
-	namespace Internal
-    {
-        public partial interface ISolutionFileOperator
+        /// <summary>
+        /// Strict, in the sense that if the project file is not already included in the solution file, then an exception will be thrown.
+		/// <para>The first project in the solution's projects list is the default startup project.
+		/// (After opening a solution, a startup project can be set. But that setting is not contained within the solution, and is not checked into source control.)</para>
+        /// </summary>
+        public void Set_DefaultStartupProject(
+            SolutionFile solutionFile,
+            string solutionFilePath,
+            string projectFilePath)
         {
-			public void AddGlobalSection(
-				SolutionFile solutionFile,
-                IGlobalSection globalSection)
-            {
-				solutionFile.GlobalSections.Add(globalSection);
-            }
+            // Check to see if the project even exists.
+            var projectFileReference = Internal.Verify_HasProject_ByProjectFilePath(
+                solutionFile,
+                solutionFilePath,
+                projectFilePath);
 
-			/// <summary>
-			/// Simply adds the project file reference.
-			/// </summary>
-			public void AddProjectReference(
-				SolutionFile solutionFile,
-				ProjectFileReference projectFileReference)
-            {
-				solutionFile.ProjectFileReferences.Add(projectFileReference);
-            }
+            // Remove the project file reference.
+            solutionFile.ProjectFileReferences.Remove(projectFileReference);
 
-			public WasFound<ProjectFileReference> HasProject(
-				SolutionFile solutionFile,
-				string solutionFilePath,
-				string projectFilePath)
-            {
-				var projectRelativeFilePath = Instances.PathOperator.GetProjectRelativeFilePath(
-					solutionFilePath,
-					projectFilePath);
-
-				var output = this.HasProject(
-					solutionFile,
-					projectRelativeFilePath);
-
-				return output;
-            }
-
-			public Dictionary<string, WasFound<ProjectFileReference>> HasProjects(
-				SolutionFile solutionFile,
-				string solutionFilePath,
-				IEnumerable<string> projectFilePaths)
-			{
-				var projectRelativeFilePathsByFilePath = Instances.PathOperator.GetProjectRelativeFilePathsByFilePath(
-					solutionFilePath,
-					projectFilePaths);
-
-				var projectFileReferencesByRelativeFilePath = solutionFile.GetProjectFileReferences()
-					.ToDictionary(
-						projectFileReference => projectFileReference.ProjectRelativeFilePath,
-						projectFileReference => projectFileReference);
-
-				var join =
-					from xPair in projectRelativeFilePathsByFilePath
-					join yPair in projectFileReferencesByRelativeFilePath on xPair.Value equals yPair.Key into groupJoin
-					from joinPair in groupJoin.DefaultIfEmpty()
-					select new { ProjectFilePath = xPair.Key, ProjectFileReference = joinPair.Value };
-
-				var output = join
-					.ToDictionary(
-						x => x.ProjectFilePath,
-						x => WasFound.From(x.ProjectFileReference));
-
-				return output;
-			}
-
-			public WasFound<ProjectFileReference> HasProject(
-				SolutionFile solutionFile,
-				string projectRelativeFilePath)
-            {
-				var projectOrDefault = solutionFile.ProjectFileReferences
-					.Where(x => x.ProjectRelativeFilePath == projectRelativeFilePath)
-					// Use robust First() even though there should not be multiple.
-					.FirstOrDefault();
-
-				var output = WasFound.From(projectOrDefault);
-				return output;
-            }
-		}
+            // Then insert at the beginning.
+            solutionFile.ProjectFileReferences.Insert(0, projectFileReference);
+        }
     }
 }

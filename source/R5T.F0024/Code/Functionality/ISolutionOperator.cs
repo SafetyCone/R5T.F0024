@@ -67,5 +67,17 @@ namespace R5T.F0024
 
 			return hasProjectReference;
         }
+
+		public void Set_DefaultStartupProject(
+			string solutionFilePath,
+			string projectFilePath)
+		{
+			Instances.SolutionFileOperator.InModifyContext_Synchronous(
+				solutionFilePath,
+				solutionFile => Instances.SolutionFileOperator.Set_DefaultStartupProject(
+					solutionFile,
+					solutionFilePath,
+					projectFilePath));
+		}
 	}
 }

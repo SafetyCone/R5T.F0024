@@ -15,21 +15,4 @@ namespace R5T.F0024
 
 	    #endregion
 	}
-
-
-	namespace Internal
-    {
-		public class SolutionFileOperator : ISolutionFileOperator
-		{
-			#region Infrastructure
-
-			public static ISolutionFileOperator Instance { get; } = new SolutionFileOperator();
-
-			private SolutionFileOperator()
-			{
-			}
-
-			#endregion
-		}
-	}
 }
