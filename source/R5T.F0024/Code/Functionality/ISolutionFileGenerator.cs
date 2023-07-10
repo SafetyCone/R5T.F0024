@@ -64,7 +64,7 @@ namespace R5T.F0024
 		}
 
 		/// <summary>
-		/// Chooses <see cref="CreateNew_2022"/> as the default.
+		/// Chooses <see cref="CreateNew_2022()"/> as the default.
 		/// </summary>
 		public SolutionFile CreateNew()
         {
@@ -103,7 +103,6 @@ namespace R5T.F0024
 		/// <summary>
 		/// Creates a new, empty solution file. (VS 2022)
 		/// </summary>
-		/// <param name="projectFilePath"></param>
 		public void CreateNew(string solutionFilePath)
 		{
 			var solutionGuid = Instances.GuidOperator.New();

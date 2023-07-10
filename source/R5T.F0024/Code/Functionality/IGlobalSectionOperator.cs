@@ -120,7 +120,7 @@ namespace R5T.F0024
         }
 
         /// <summary>
-        /// Creates a new <see cref="ProjectConfigurationPlatformsGlobalSection"/> with the <see cref="ProjectConfigurationPlatformsGlobalSection.GlobalSectionName"/> and <see cref="PreOrPostSolution.PostSolution"/>.
+        /// Creates a new <see cref="ProjectConfigurationPlatformsGlobalSection"/> with the <see cref="IGlobalSectionNames.ProjectConfigurationPlatforms"/> and <see cref="ISolutionFileStrings.PostSolution"/>.
         /// </summary>
         public ProjectConfigurationPlatformsGlobalSection New_ProjectConfigurationPlatforms()
         {
@@ -171,7 +171,7 @@ namespace R5T.F0024
         }
 
         /// <summary>
-        /// Creates a new <see cref="SolutionConfigurationPlatformsGlobalSection"/> with the <see cref="SolutionConfigurationPlatformsGlobalSection.GlobalSectionName"/> and <see cref="PreOrPostSolution.PreSolution"/>.
+        /// Creates a new <see cref="SolutionConfigurationPlatformsGlobalSection"/> with the <see cref="IGlobalSectionNames.SolutionConfigurationPlatforms"/> and <see cref="ISolutionFileStrings.PreSolution"/>.
         /// </summary>
         public SolutionConfigurationPlatformsGlobalSection New_SolutionConfigurationPlatforms()
         {
@@ -184,7 +184,7 @@ namespace R5T.F0024
         }
 
         /// <summary>
-        /// Creates a new <see cref="SolutionConfigurationPlatformsGlobalSection"/> with the <see cref="SolutionConfigurationPlatformsGlobalSection.GlobalSectionName"/> and <see cref="PreOrPostSolution.PreSolution"/>.
+        /// <inheritdoc cref="New_SolutionConfigurationPlatforms" path="/summary"/>
         /// Adds all default <see cref="SolutionBuildConfigurationPlatform"/> values.
         /// </summary>
         public SolutionConfigurationPlatformsGlobalSection NewDefault_SolutionConfigurationPlatforms()
