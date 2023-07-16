@@ -10,6 +10,28 @@ namespace R5T.F0024.Construction
 	[DemonstrationsMarker]
 	public partial interface ISolutionFileOperatorDemonstrations : IDemonstrationsMarker
 	{
+		public async Task Set_DefaultStartupProject()
+		{
+			/// Inputs.
+			var solutionFilePath = @"C:\Code\DEV\Git\GitHub\SafetyCone\R5T.S0063.Private\source\R5T.S0063.S000.Private.sln";
+
+			var projectFilePath = @"C:\Code\DEV\Git\GitHub\SafetyCone\R5T.S0063.Private\source\R5T.S0063.S000\R5T.S0063.S000.csproj";
+
+
+			/// Run.
+			await Instances.SolutionFileOperator.InModifyContext(
+				solutionFilePath,
+				(solutionFile, solutionFilePath) =>
+				{
+					Instances.SolutionFileOperator.Set_DefaultStartupProject(
+						solutionFile,
+						solutionFilePath,
+						projectFilePath);
+
+					return Task.CompletedTask;
+				});
+		}
+
 		public void ListMissingProjectReferences()
 		{
 			var solutionFilePath = @"C:\Code\DEV\Git\GitHub\SafetyCone\R5T.F0016\source\R5T.F0016.Construction.sln";

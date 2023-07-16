@@ -8,7 +8,7 @@ namespace R5T.F0024.Construction
     {
         static async Task Main()
         {
-            Try.Instance.SolutionFileRoundTrip();
+            //Try.Instance.SolutionFileRoundTrip();
 
             //Program.RoundTripDeserializeThenSerializeSolutionFile();
             //Program.DeserializeSolutionFile();
@@ -27,6 +27,7 @@ namespace R5T.F0024.Construction
             //Instances.SolutionFileOperatorDemonstrations.GetAndSetSolutionIdentity();
             //Instances.SolutionFileOperatorDemonstrations.ListProjectReferences();
             //await Instances.SolutionFileOperatorDemonstrations.ListAllRecursiveProjectReferences();
+            await Instances.SolutionFileOperatorDemonstrations.Set_DefaultStartupProject();
         }
 
 #pragma warning disable IDE0051 // Remove unused private members
