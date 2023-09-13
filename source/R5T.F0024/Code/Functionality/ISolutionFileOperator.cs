@@ -695,8 +695,8 @@ namespace R5T.F0024
             var solutionFile = Instances.SolutionFileSerializer.Deserialize_Synchronous(solutionFilePath);
 
             var output = ActionOperator.Instance.Run(
-                solutionFileAction,
-                solutionFile);
+                solutionFile,
+                solutionFileAction);
 
             return output;
         }
