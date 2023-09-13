@@ -141,7 +141,7 @@ EndGlobal
 				;
 
 			// Write text synchronously.
-			using var stream = Instances.FileStreamOperator.NewWrite(filePath);
+			using var stream = Instances.FileStreamOperator.Open_Write(filePath);
 			using var writer = Instances.StreamWriterOperator.NewLeaveOpenAddBOM(stream);
 
 			writer.WriteLine(outputText);

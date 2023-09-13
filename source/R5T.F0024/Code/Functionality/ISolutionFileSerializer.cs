@@ -22,7 +22,7 @@ namespace R5T.F0024
 		{
 			var text = Internal.Serialize_ToText(solutionFile);
 
-			using var stream = Instances.FileStreamOperator.NewWrite(solutionFilePath);
+			using var stream = Instances.FileStreamOperator.Open_Write(solutionFilePath);
 			using var writer = Instances.StreamWriterOperator.NewLeaveOpenAddBOM(stream);
 
 			await writer.WriteLineAsync(text);
@@ -34,7 +34,7 @@ namespace R5T.F0024
         {
             var text = Internal.Serialize_ToText(solutionFile);
 
-            using var stream = Instances.FileStreamOperator.NewWrite(solutionFilePath);
+            using var stream = Instances.FileStreamOperator.Open_Write(solutionFilePath);
             using var writer = Instances.StreamWriterOperator.NewLeaveOpenAddBOM(stream);
 
             writer.WriteLine(text);
