@@ -757,7 +757,7 @@ namespace R5T.F0024.Internal
             var lines = projectSection switch
             {
                 LinesBasedProjectSection linesBasedProjectSection => this.Serialize_ProjectSection(linesBasedProjectSection),
-                _ => throw new Exception($"Unhandled project section type: {F0000.TypeNameOperator.Instance.GetTypeNameOf(projectSection)}"),
+                _ => throw new Exception($"Unhandled project section type: {Instances.TypeNameOperator.Get_TypeNameOf(projectSection)}"),
             };
 
             return lines;
