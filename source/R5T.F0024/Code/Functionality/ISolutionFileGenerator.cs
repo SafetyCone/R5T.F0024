@@ -142,7 +142,7 @@ EndGlobal
 
 			// Write text synchronously.
 			using var stream = Instances.FileStreamOperator.Open_Write(filePath);
-			using var writer = Instances.StreamWriterOperator.NewLeaveOpenAddBOM(stream);
+			using var writer = Instances.StreamWriterOperator.New_LeaveOpen_AddByteOrderMarks(stream);
 
 			writer.WriteLine(outputText);
 		}
