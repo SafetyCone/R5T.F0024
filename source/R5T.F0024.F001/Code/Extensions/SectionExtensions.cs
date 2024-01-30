@@ -1,7 +1,8 @@
 ﻿using System;
 
-using R5T.F0024;
 using R5T.F0024.T001;
+
+using Instances = R5T.F0024.F001.Instances;
 
 
 namespace System
@@ -12,7 +13,7 @@ namespace System
             where TDestintationSection : SectionBase
             where TSourceSection : ISection
         {
-            SectionOperator.Instance.FillFrom(destination, source);
+            Instances.SectionOperator.FillFrom(destination, source);
 
             return destination;
         }

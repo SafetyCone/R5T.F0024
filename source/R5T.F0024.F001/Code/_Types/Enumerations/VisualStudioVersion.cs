@@ -1,7 +1,7 @@
 ﻿using System;
 
 
-namespace R5T.F0024
+namespace R5T.F0024.F001
 {
     public enum VisualStudioVersion
     {

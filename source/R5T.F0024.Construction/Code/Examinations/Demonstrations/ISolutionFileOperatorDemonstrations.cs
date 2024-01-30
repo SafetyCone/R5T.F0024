@@ -47,7 +47,7 @@ namespace R5T.F0024.Construction
 				.Append(alphabeticalProjectReferenceFilePaths)
 				;
 
-			Instances.FileOperator.WriteLines(
+			Instances.FileOperator.Write_Lines_Synchronous(
 				Instances.FilePaths.OutputTextFilePath,
 				lines);
 
@@ -84,7 +84,7 @@ namespace R5T.F0024.Construction
 				.Append(alphabeticalProjectReferenceFilePaths)
 				;
 
-			Instances.FileOperator.WriteLines(
+			Instances.FileOperator.Write_Lines_Synchronous(
 				Instances.FilePaths.OutputTextFilePath,
 				lines);
 
@@ -97,7 +97,7 @@ namespace R5T.F0024.Construction
 			var originalSolutionFilePath = @"C:\Temp\Solution.sln";
 			var modifiedSolutioFilePath = @"C:\Temp\Solution-IdentitySet.sln";
 
-			Instances.FileSystemOperator.CopyFile(originalSolutionFilePath, modifiedSolutioFilePath);
+			Instances.FileSystemOperator.Copy_File(originalSolutionFilePath, modifiedSolutioFilePath);
 
 			var solutionFile = Instances.SolutionFileOperator.Deserialize(modifiedSolutioFilePath);
 
@@ -123,7 +123,7 @@ namespace R5T.F0024.Construction
 			var originalSolutionFilePath = @"C:\Temp\Solution-WithProjectInSolutionFolder.sln";
 			var modifiedSolutioFilePath = @"C:\Temp\Solution-WithoutProjectInSolutionFolder.sln";
 
-			Instances.FileSystemOperator.CopyFile(originalSolutionFilePath, modifiedSolutioFilePath);
+			Instances.FileSystemOperator.Copy_File(originalSolutionFilePath, modifiedSolutioFilePath);
 
 			var projectFilePath = @"C:\Code\DEV\Git\GitHub\SafetyCone\R5T.Magyar\source\R5T.Magyar\R5T.Magyar.csproj";
 
@@ -137,7 +137,7 @@ namespace R5T.F0024.Construction
 			var originalSolutionFilePath = @"C:\Temp\Solution-WithSolutionFolder.sln";
 			var modifiedSolutioFilePath = @"C:\Temp\Solution-WithProjectInSolutionFolder.sln";
 
-			Instances.FileSystemOperator.CopyFile(originalSolutionFilePath, modifiedSolutioFilePath);
+			Instances.FileSystemOperator.Copy_File(originalSolutionFilePath, modifiedSolutioFilePath);
 
 			var solutionFolderName = "_Dependencies";
 
@@ -159,7 +159,7 @@ namespace R5T.F0024.Construction
 			var originalSolutionFilePath = @"C:\Temp\Solution.sln";
 			var modifiedSolutioFilePath = @"C:\Temp\Solution-WithSolutionFolder.sln";
 
-			Instances.FileSystemOperator.CopyFile(originalSolutionFilePath, modifiedSolutioFilePath);
+			Instances.FileSystemOperator.Copy_File(originalSolutionFilePath, modifiedSolutioFilePath);
 
 			var solutionFolderName = "_Dependencies";
 
@@ -178,7 +178,7 @@ namespace R5T.F0024.Construction
 			var originalSolutionFilePath = @"C:\Temp\Solution-WithAnotherProject.sln";
 			var modifiedSolutioFilePath = @"C:\Temp\Solution-WithoutAnotherProject.sln";
 
-			Instances.FileSystemOperator.CopyFile(originalSolutionFilePath, modifiedSolutioFilePath);
+			Instances.FileSystemOperator.Copy_File(originalSolutionFilePath, modifiedSolutioFilePath);
 
 			var projectFilePath = @"C:\Code\DEV\Git\GitHub\SafetyCone\R5T.Magyar\source\R5T.Magyar\R5T.Magyar.csproj";
 
@@ -192,7 +192,7 @@ namespace R5T.F0024.Construction
 			var originalSolutionFilePath = @"C:\Temp\Solution-WithProject.sln";
 			var modifiedSolutioFilePath = @"C:\Temp\Solution-WithAnotherProject.sln";
 
-			Instances.FileSystemOperator.CopyFile(originalSolutionFilePath, modifiedSolutioFilePath);
+			Instances.FileSystemOperator.Copy_File(originalSolutionFilePath, modifiedSolutioFilePath);
 
 			var projectFilePath = @"C:\Code\DEV\Git\GitHub\SafetyCone\R5T.Magyar\source\R5T.Magyar\R5T.Magyar.csproj";
 
@@ -211,7 +211,7 @@ namespace R5T.F0024.Construction
 			var originalSolutionFilePath = @"C:\Temp\Solution.sln";
 			var modifiedSolutioFilePath = @"C:\Temp\Solution-WithProject.sln";
 
-			Instances.FileSystemOperator.CopyFile(originalSolutionFilePath, modifiedSolutioFilePath);
+			Instances.FileSystemOperator.Copy_File(originalSolutionFilePath, modifiedSolutioFilePath);
 
 			var projectFilePath = @"C:\Code\DEV\Git\GitHub\SafetyCone\R5T.F0024\source\R5T.F0024\R5T.F0024.csproj";
 

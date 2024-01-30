@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 
 
-namespace R5T.F0024
+namespace R5T.F0024.F001
 {
     public class OrderedNamesComparer : IComparer<string>
     {
@@ -20,8 +20,8 @@ namespace R5T.F0024
             var indexOfX = this.OrderedNames.IndexOf(x);
             var indexOfY = this.OrderedNames.IndexOf(y);
 
-            var xWasFound = F0000.Instances.StringOperator.WasFound(indexOfX);
-            var yWasFound = F0000.Instances.StringOperator.WasFound(indexOfY);
+            var xWasFound = Instances.StringOperator.Was_Found(indexOfX);
+            var yWasFound = Instances.StringOperator.Was_Found(indexOfY);
 
             if(xWasFound)
             {

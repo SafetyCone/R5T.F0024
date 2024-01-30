@@ -6,8 +6,9 @@ using R5T.T0131;
 namespace R5T.F0024
 {
 	[ValuesMarker]
-	public partial interface IProjectSectionNames : IValuesMarker
+	public partial interface IProjectSectionNames : IValuesMarker,
+		F001.IProjectSectionNames
 	{
-		public string SolutionItems => "SolutionItems";
+		
 	}
 }

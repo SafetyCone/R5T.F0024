@@ -1,0 +1,24 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup Label="Main">
+    <TargetFramework>netstandard2.1</TargetFramework>
+    <OutputType>Library</OutputType>
+    <GenerateDocumentationFile>true</GenerateDocumentationFile>
+    <NoWarn>1573;1587;1591</NoWarn>
+  </PropertyGroup>
+  <PropertyGroup Label="Package">
+    <Version>1.0.0</Version>
+    <Authors>DCoats</Authors>
+    <Company>Rivet</Company>
+    <Copyright>Copyright © Rivet 2024</Copyright>
+    <Description>Functionality library for Visual Studio solution file generation and modification using the custom R5T.F0024.T001.SolutionFile type.</Description>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
+  </PropertyGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\R5T.L0066\source\R5T.L0066\R5T.L0066.csproj" />
+    <ProjectReference Include="..\..\..\R5T.L0089\source\R5T.L0089\R5T.L0089.csproj" />
+    <ProjectReference Include="..\..\..\R5T.T0221\source\R5T.T0221\R5T.T0221.csproj" />
+    <ProjectReference Include="..\..\..\R5T.Z0009\source\R5T.Z0009\R5T.Z0009.csproj" />
+    <ProjectReference Include="..\R5T.F0024.T001\R5T.F0024.T001.csproj" />
+  </ItemGroup>
+</Project>

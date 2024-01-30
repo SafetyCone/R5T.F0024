@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 using R5T.F0024.T001;
 
-using Instances = R5T.F0024.Instances;
+using Instances = R5T.F0024.F001.Instances;
 
 
 namespace System.Linq

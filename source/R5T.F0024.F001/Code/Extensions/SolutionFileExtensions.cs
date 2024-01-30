@@ -2,7 +2,7 @@
 
 using R5T.F0024.T001;
 
-using Instances = R5T.F0024.Instances;
+using Instances = R5T.F0024.F001.Instances;
 
 
 namespace System
@@ -25,7 +25,7 @@ namespace System
             return solutionFile;
         }
 
-        /// <inheritdoc cref="R5T.F0024.ISolutionFileOperator.Get_NonSolutionFolderProjectFileReferences(SolutionFile)"/>
+        /// <inheritdoc cref="R5T.F0024.F001.ISolutionFileOperator.Get_NonSolutionFolderProjectFileReferences(SolutionFile)"/>
         public static ProjectFileReference[] GetProjectFileReferences(this SolutionFile solutionFile)
         {
             var output = Instances.SolutionFileOperator.Get_ProjectFileReferences(solutionFile);

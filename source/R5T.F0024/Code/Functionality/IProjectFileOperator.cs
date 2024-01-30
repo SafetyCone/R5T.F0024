@@ -3,16 +3,12 @@ using System;
 using R5T.T0132;
 
 
-namespace R5T.F0024.N000
+namespace R5T.F0024
 {
 	[FunctionalityMarker]
-	public partial interface IProjectFileOperator : IFunctionalityMarker
+	public partial interface IProjectFileOperator : IFunctionalityMarker,
+		F001.IProjectFileOperator
 	{
-		public Guid GetProjectTypeIdentity_ForSolutionFile(string projectFile)
-        {
-			// TODO: Just always return C# for now.
-			var output = Instances.ProjectTypeIdentities.CSharpProject;
-			return output;
-        }
+		
 	}
 }

@@ -15,21 +15,21 @@ namespace R5T.F0024
 
 	    #endregion
 	}
+}
 
 
-	namespace Internal
+namespace R5T.F0024.Internal
+{
+    public class GlobalSectionOperator : IGlobalSectionOperator
     {
-		public class GlobalSectionOperator : IGlobalSectionOperator
-		{
-			#region Infrastructure
+        #region Infrastructure
 
-			public static IGlobalSectionOperator Instance { get; } = new GlobalSectionOperator();
+        public static IGlobalSectionOperator Instance { get; } = new GlobalSectionOperator();
 
-			private GlobalSectionOperator()
-			{
-			}
+        private GlobalSectionOperator()
+        {
+        }
 
-			#endregion
-		}
-	}
+        #endregion
+    }
 }

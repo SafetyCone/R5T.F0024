@@ -1,7 +1,7 @@
 using System;
 
 
-namespace R5T.F0024.N000
+namespace R5T.F0024
 {
 	public class PathOperator : IPathOperator
 	{
