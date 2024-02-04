@@ -17,3 +17,21 @@ namespace R5T.F0024.F001
         #endregion
     }
 }
+
+
+namespace R5T.F0024.F001.Implementations
+{
+    public class SolutionFileGenerator : ISolutionFileGenerator
+    {
+        #region Infrastructure
+
+        public static ISolutionFileGenerator Instance { get; } = new SolutionFileGenerator();
+
+
+        private SolutionFileGenerator()
+        {
+        }
+
+        #endregion
+    }
+}

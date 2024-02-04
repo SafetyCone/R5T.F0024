@@ -1,9 +1,9 @@
 using System;
-using System.IO;
 
 using R5T.T0132;
 
 using R5T.F0024.T001;
+using System.Threading.Tasks;
 
 
 namespace R5T.F0024.F001
@@ -11,19 +11,25 @@ namespace R5T.F0024.F001
     [FunctionalityMarker]
     public partial interface ISolutionFileGenerator : IFunctionalityMarker
     {
-        public SolutionFile CreateNew(VisualStudioVersion version)
+#pragma warning disable IDE1006 // Naming Styles
+        public Implementations.ISolutionFileGenerator _Implementations => Implementations.SolutionFileGenerator.Instance;
+#pragma warning restore IDE1006 // Naming Styles
+
+
+
+        public SolutionFile New(VisualStudioVersion version)
         {
             var solutionFile = version switch
             {
-                VisualStudioVersion.Version_2019 => this.CreateNew_2019(),
-                VisualStudioVersion.Version_2022 => this.CreateNew_2022(),
+                VisualStudioVersion.Version_2019 => this.New_2019(),
+                VisualStudioVersion.Version_2022 => this.New_2022(),
                 _ => throw Instances.SwitchOperator.Get_DefaultCaseException(version),
             };
 
             return solutionFile;
         }
 
-        public SolutionFile CreateNew_2019()
+        public SolutionFile New_2019()
         {
             var solutionFile = new SolutionFile()
             .WithVersionInformation(Instances.VersionInformationGenerator.Get2019_Default)
@@ -34,16 +40,16 @@ namespace R5T.F0024.F001
             return solutionFile;
         }
 
-        public SolutionFile CreateNew_2019(Action<SolutionFile> modifier)
+        public SolutionFile New_2019(Action<SolutionFile> modifier)
         {
-            var solutionFile = this.CreateNew(
-                this.CreateNew_2019,
+            var solutionFile = this.New(
+                this.New_2019,
                 modifier);
 
             return solutionFile;
         }
 
-        public SolutionFile CreateNew_2022()
+        public SolutionFile New_2022()
         {
             var solutionFile = new SolutionFile()
             .WithVersionInformation(Instances.VersionInformationGenerator.Get2022_Default)
@@ -54,34 +60,34 @@ namespace R5T.F0024.F001
             return solutionFile;
         }
 
-        public SolutionFile CreateNew_2022(Action<SolutionFile> modifier)
+        public SolutionFile New_2022(Action<SolutionFile> modifier)
         {
-            var solutionFile = this.CreateNew(
-                this.CreateNew_2022,
+            var solutionFile = this.New(
+                this.New_2022,
                 modifier);
 
             return solutionFile;
         }
 
         /// <summary>
-        /// Chooses <see cref="CreateNew_2022()"/> as the default.
+        /// Chooses <see cref="New_2022()"/> as the default.
         /// </summary>
-        public SolutionFile CreateNew()
+        public SolutionFile New()
         {
-            var solutionFile = this.CreateNew_2022();
+            var solutionFile = this.New_2022();
             return solutionFile;
         }
 
-        public SolutionFile CreateNew(Action<SolutionFile> modifier)
+        public SolutionFile New(Action<SolutionFile> modifier)
         {
-            var solutionFile = this.CreateNew();
+            var solutionFile = this.New();
 
             modifier(solutionFile);
 
             return solutionFile;
         }
 
-        public SolutionFile CreateNew(Func<SolutionFile> constructor, Action<SolutionFile> modifier)
+        public SolutionFile New(Func<SolutionFile> constructor, Action<SolutionFile> modifier)
         {
             var solutionFile = constructor();
 
@@ -90,61 +96,19 @@ namespace R5T.F0024.F001
             return solutionFile;
         }
 
-        /// <inheritdoc cref="CreateNew()"/>
-        public void Create_New(string solutionFilePath)
+        public async Task New(string solutionFilePath)
         {
-            var solutionFile = this.CreateNew();
+            var solutionFile = this.New();
 
-            Instances.SolutionFileSerializer.Serialize_Synchronous(
+            await Instances.SolutionFileSerializer.Serialize(
                 solutionFilePath,
                 solutionFile);
         }
 
-        /// <summary>
-        /// Creates a new, empty solution file. (VS 2022)
-        /// </summary>
-        public void CreateNew(string solutionFilePath)
+        /// <inheritdoc cref="Implementations.ISolutionFileGenerator.New_UsingSolutionFileObject_Synchronous(string)"/>
+        public void New_Synchronous(string solutionFilePath)
         {
-            var solutionGuid = Instances.GuidOperator.New();
-
-            var text =
-$@"
-Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 17
-VisualStudioVersion = 17.2.32630.192
-MinimumVisualStudioVersion = 10.0.40219.1
-Global
-	GlobalSection(SolutionProperties) = preSolution
-		HideSolutionNode = FALSE
-	EndGlobalSection
-	GlobalSection(ExtensibilityGlobals) = postSolution
-		SolutionGuid = {Instances.GuidOperator.ToString_ForSolutionFile(solutionGuid)}
-	EndGlobalSection
-EndGlobal6
-";
-            this.WriteText(
-                solutionFilePath,
-                text,
-                // No trimming, somehow the Visual Studio blank solution template begins and ends with a new line.
-                false);
-        }
-
-        public void WriteText(
-            string filePath,
-            string text,
-            bool trim = true)
-        {
-            // Trim text.
-            var outputText = trim
-                ? text.Trim()
-                : text
-                ;
-
-            // Write text synchronously.
-            using var stream = Instances.FileStreamOperator.Open_Write(filePath);
-            using var writer = Instances.StreamWriterOperator.New_LeaveOpen_AddByteOrderMarks(stream);
-
-            writer.WriteLine(outputText);
+            _Implementations.New_UsingSolutionFileObject_Synchronous(solutionFilePath);
         }
     }
 }

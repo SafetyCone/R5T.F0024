@@ -740,7 +740,7 @@ namespace R5T.F0024.F001
         public bool IsSolutionFile(string possibleSolutionFilePath)
         {
             // File exists?
-            Instances.FileSystemOperator.VerifyFileExists(possibleSolutionFilePath);
+            Instances.FileSystemOperator.Verify_File_Exists(possibleSolutionFilePath);
 
             // Solution files should have the byte-order-mark.
             var hasByteOrderMark = Instances.FileOperator.Has_ByteOrderMark(possibleSolutionFilePath);
