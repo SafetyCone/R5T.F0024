@@ -62,7 +62,7 @@ namespace R5T.F0024.Construction
         {
             var solutionFilePath = @"C:\Temp\Solution.sln";
 
-            Instances.SolutionFileGenerator.CreateNew(solutionFilePath);
+            Instances.SolutionFileGenerator.New_Synchronous(solutionFilePath);
         }
     }
 }
