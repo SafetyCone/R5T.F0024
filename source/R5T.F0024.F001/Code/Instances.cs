@@ -12,6 +12,7 @@ namespace R5T.F0024.F001
         public static L0066.IFileOperator FileOperator => L0066.FileOperator.Instance;
         public static L0066.IFileStreamOperator FileStreamOperator => L0066.FileStreamOperator.Instance;
         public static L0066.IFileSystemOperator FileSystemOperator => L0066.FileSystemOperator.Instance;
+        public static L0066.IFunctionOperator FunctionOperator => L0066.FunctionOperator.Instance;
         public static IGlobalSectionGenerator GlobalSectionGenerator => F001.GlobalSectionGenerator.Instance;
         public static IGlobalSectionNames GlobalSectionNames => F001.GlobalSectionNames.Instance;
         public static IGlobalSectionOperator GlobalSectionOperator => F001.GlobalSectionOperator.Instance;

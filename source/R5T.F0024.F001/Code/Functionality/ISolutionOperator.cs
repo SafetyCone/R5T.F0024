@@ -25,6 +25,15 @@ namespace R5T.F0024.F001
             return output;
         }
 
+        public Dictionary<string, Guid> AddProjects_Idempotent(
+            string solutionFilePath,
+            params string[] projectReferenceFilePaths)
+        {
+            return this.AddProjects_Idempotent(
+                solutionFilePath,
+                projectReferenceFilePaths.AsEnumerable());
+        }
+
         public string[] GetProjects(string solutionFilePath)
         {
             var projects = Instances.SolutionFileOperator.Get_ProjectReferenceFilePaths(solutionFilePath);
