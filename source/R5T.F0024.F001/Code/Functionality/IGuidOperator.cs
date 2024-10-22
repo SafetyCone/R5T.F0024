@@ -2,7 +2,7 @@ using System;
 
 using R5T.T0132;
 
-using GuidDocumentation = R5T.Y0006.Documentation.ForGuid;
+using GuidDocumentation = R5T.Y0006.Documentation.For_Guid;
 
 
 namespace R5T.F0024.F001
