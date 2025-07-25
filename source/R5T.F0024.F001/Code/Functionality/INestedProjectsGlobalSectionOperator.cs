@@ -18,7 +18,7 @@ namespace R5T.F0024.F001
         {
             var nestingsForParent = nestedProjectsGlobalSection.ProjectNestings
                 .Where(x => x.ParentProjectIdentity == parentProjectIdentity)
-                .Now();
+                .ToArray();
 
             return nestingsForParent;
         }
@@ -33,7 +33,7 @@ namespace R5T.F0024.F001
 
             var childProjectIdentities = nestingsForParent
                 .Select(xNesting => xNesting.ChildProjectIdentity)
-                .Now();
+                .ToArray();
 
             return childProjectIdentities;
         }
@@ -51,7 +51,7 @@ namespace R5T.F0024.F001
 
             var output = projectFileReferences
                 .Where(xProjectFileReference => childProjectIdentitiesHash.Contains(xProjectFileReference.ProjectIdentity))
-                .Now();
+                .ToArray();
 
             return output;
         }

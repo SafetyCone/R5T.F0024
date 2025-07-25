@@ -48,7 +48,7 @@ namespace R5T.F0024.F001
 
             var projectsMissingFromSolution = desiredProjectFilePaths
                 .Except(projectsInSolution)
-                .Now();
+                .ToArray();
 
             return projectsMissingFromSolution;
         }

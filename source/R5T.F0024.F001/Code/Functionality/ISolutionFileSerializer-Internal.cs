@@ -731,7 +731,7 @@ namespace R5T.F0024.F001.Internal
                 .Append(sectionEnd)
                 // Prepend tab to each line of the whole section.
                 .Select(x => $"\t{x}")
-                .Now();
+                .ToArray();
 
             return output;
         }
@@ -746,7 +746,7 @@ namespace R5T.F0024.F001.Internal
                 .Append(SolutionFileStrings.Instance.EndGlobalSection)
                 // Prepend tab to each line of the whole section.
                 .Select(x => $"\t{x}")
-                .Now();
+                .ToArray();
 
             return output;
         }
