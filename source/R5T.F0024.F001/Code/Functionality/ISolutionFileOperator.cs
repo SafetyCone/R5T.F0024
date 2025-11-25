@@ -672,7 +672,7 @@ namespace R5T.F0024.F001
         {
             var solutionFile = Instances.SolutionFileSerializer.Deserialize_Synchronous(solutionFilePath);
 
-            var output = await Instances.FunctionOperator.Run(
+            var output = await Instances.FunctionOperator.Run_Function(
                 solutionFile,
                 solutionFileAction);
 
@@ -694,7 +694,7 @@ namespace R5T.F0024.F001
         {
             var solutionFile = Instances.SolutionFileSerializer.Deserialize_Synchronous(solutionFilePath);
 
-            var output = Instances.FunctionOperator.Run(
+            var output = Instances.FunctionOperator.Run_Function(
                 solutionFile,
                 solutionFileAction);
 
