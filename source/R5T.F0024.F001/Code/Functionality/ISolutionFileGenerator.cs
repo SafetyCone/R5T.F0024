@@ -1,9 +1,9 @@
 using System;
+using System.Threading.Tasks;
 
 using R5T.T0132;
 
 using R5T.F0024.T001;
-using System.Threading.Tasks;
 
 
 namespace R5T.F0024.F001
@@ -32,10 +32,10 @@ namespace R5T.F0024.F001
         public SolutionFile New_2019()
         {
             var solutionFile = new SolutionFile()
-            .WithVersionInformation(Instances.VersionInformationGenerator.Get2019_Default)
-            .AddGlobalSection(Instances.GlobalSectionGenerator.SolutionProperties_GetDefault)
-            .AddGlobalSection(Instances.GlobalSectionGenerator.ExtensibilityGlobals_GetDefault)
-            ;
+                .WithVersionInformation(Instances.VersionInformationGenerator.Get2019_Default)
+                .AddGlobalSection(Instances.GlobalSectionGenerator.SolutionProperties_GetDefault)
+                .AddGlobalSection(Instances.GlobalSectionGenerator.ExtensibilityGlobals_GetDefault)
+                ;
 
             return solutionFile;
         }
@@ -52,10 +52,10 @@ namespace R5T.F0024.F001
         public SolutionFile New_2022()
         {
             var solutionFile = new SolutionFile()
-            .WithVersionInformation(Instances.VersionInformationGenerator.Get2022_Default)
-            .AddGlobalSection(Instances.GlobalSectionGenerator.SolutionProperties_GetDefault)
-            .AddGlobalSection(Instances.GlobalSectionGenerator.ExtensibilityGlobals_GetDefault)
-            ;
+                .WithVersionInformation(Instances.VersionInformationGenerator.Get2022_Default)
+                .AddGlobalSection(Instances.GlobalSectionGenerator.SolutionProperties_GetDefault)
+                .AddGlobalSection(Instances.GlobalSectionGenerator.ExtensibilityGlobals_GetDefault)
+                ;
 
             return solutionFile;
         }

@@ -17,6 +17,7 @@ namespace R5T.F0024.F001
         public static IGlobalSectionNames GlobalSectionNames => F001.GlobalSectionNames.Instance;
         public static IGlobalSectionOperator GlobalSectionOperator => F001.GlobalSectionOperator.Instance;
         public static IGuidOperator GuidOperator => F001.GuidOperator.Instance;
+        public static F10Y.L0003.L001.IHasOperator HasOperator => F10Y.L0003.L001.HasOperator.Instance;
         public static IOperations Operations => F001.Operations.Instance;
         public static IPathOperator PathOperator => F001.PathOperator.Instance;
         public static IProjectFileOperator ProjectFileOperator => F001.ProjectFileOperator.Instance;

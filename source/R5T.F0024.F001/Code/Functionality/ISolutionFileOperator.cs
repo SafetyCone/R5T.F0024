@@ -3,7 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-using R5T.L0089.T000;
+using F10Y.L0003.L001;
+using F10Y.L0003.L001.Extensions;
+
 using R5T.T0132;
 
 using R5T.F0024.T001;
@@ -132,7 +134,7 @@ namespace R5T.F0024.F001
             var hasSolutionFolder = this.Has_SolutionFolder(solutionFile, solutionFolderName);
 
             var solutionFolderIdentity = hasSolutionFolder
-                ? hasSolutionFolder.Result.ProjectIdentity
+                ? hasSolutionFolder.Value.ProjectIdentity
                 : this.AddSolutionFolder(
                     solutionFile,
                     solutionFolderName)
@@ -209,7 +211,7 @@ namespace R5T.F0024.F001
                 throw new Exception($"No solution found. No solution folder with name '{solutionFolderName}' found.");
             }
 
-            var output = hasSolutionFolder.Result.ProjectIdentity;
+            var output = hasSolutionFolder.Value.ProjectIdentity;
             return output;
         }
 
@@ -221,14 +223,14 @@ namespace R5T.F0024.F001
             return output;
         }
 
-        public WasFound<ProjectFileReference> Has_SolutionFolder(SolutionFile solutionFile, string solutionFolderName)
+        public Has<ProjectFileReference> Has_SolutionFolder(SolutionFile solutionFile, string solutionFolderName)
         {
             var solutionFolderOrDefault = solutionFile.ProjectFileReferences
                 .Where(x => x.ProjectTypeIdentity == Instances.ProjectTypeIdentities.SolutionFolder && x.ProjectName == solutionFolderName)
                 // Use robust First() even though there should only be a single instance.
                 .FirstOrDefault();
 
-            var output = WasFound.From(solutionFolderOrDefault);
+            var output = Instances.HasOperator.From(solutionFolderOrDefault);
             return output;
         }
 
@@ -597,7 +599,7 @@ namespace R5T.F0024.F001
             return nestedProjectsGlobalSection;
         }
 
-        public WasFound<NestedProjectsGlobalSection> Has_NestedProjectsGlobalSection(SolutionFile solutionFile)
+        public Has<NestedProjectsGlobalSection> Has_NestedProjectsGlobalSection(SolutionFile solutionFile)
         {
             var wasFound = Instances.GlobalSectionOperator.Has_NestedProjects(solutionFile);
             return wasFound;
@@ -783,12 +785,12 @@ namespace R5T.F0024.F001
 
             // Else, remove the project.
             // Remove the project file reference.
-            solutionFile.ProjectFileReferences.Remove(hasProject.Result);
+            solutionFile.ProjectFileReferences.Remove(hasProject.Value);
 
             // Remove the build configuration platforms for the project.
             var projectConfigurationPlatforms = Instances.GlobalSectionOperator.Get_ProjectConfigurationPlatforms(solutionFile);
 
-            var projectIdentityToRemove = hasProject.Result.ProjectIdentity;
+            var projectIdentityToRemove = hasProject.Value.ProjectIdentity;
 
             var projectBuildConfigurationMappingsToRemove = projectConfigurationPlatforms.ProjectBuildConfigurationMappings
                 .Where(x => x.ProjectIdentity == projectIdentityToRemove)
@@ -803,7 +805,7 @@ namespace R5T.F0024.F001
             var hasNestedProjects = Instances.GlobalSectionOperator.Has_NestedProjects(solutionFile);
             if (hasNestedProjects)
             {
-                var nestedProjects = hasNestedProjects.Result;
+                var nestedProjects = hasNestedProjects.Value;
 
                 var projectNestingsToRemove = nestedProjects.ProjectNestings
                     .Where(x => x.ChildProjectIdentity == projectIdentityToRemove)

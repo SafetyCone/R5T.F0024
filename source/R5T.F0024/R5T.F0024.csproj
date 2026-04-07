@@ -2,7 +2,7 @@
   <PropertyGroup>
     <TargetFramework>netstandard2.1</TargetFramework>
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
-    <NoWarn>1573;1587;1591</NoWarn>
+    <NoWarn>1573;1587;1591;IDE0130</NoWarn>
   </PropertyGroup>
   <ItemGroup>
     <ProjectReference Include="..\R5T.F0024.F001\R5T.F0024.F001.csproj" />

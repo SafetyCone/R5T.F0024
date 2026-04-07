@@ -15,7 +15,7 @@ namespace R5T.F0024.Construction
         public static F0000.IFileOperator FileOperator { get; } = F0000.FileOperator.Instance;
         public static Z0015.IFilePaths FilePaths { get; } = Z0015.FilePaths.Instance;
         public static F0000.IFileSystemOperator FileSystemOperator { get; } = F0000.FileSystemOperator.Instance;
-        public static F0000.IGuidOperator GuidOperator { get; } = F0000.GuidOperator.Instance;
+        public static F10Y.L0000.IGuidOperator GuidOperator { get; } = F10Y.L0000.GuidOperator.Instance;
         public static F0033.INotepadPlusPlusOperator NotepadPlusPlusOperator { get; } = F0033.NotepadPlusPlusOperator.Instance;
         public static IOperations Operations { get; } = Construction.Operations.Instance;
         public static IPathOperator PathOperator { get; } = F0024.PathOperator.Instance;

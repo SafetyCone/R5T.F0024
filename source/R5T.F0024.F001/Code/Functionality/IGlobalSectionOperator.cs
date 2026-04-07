@@ -1,6 +1,7 @@
 using System;
 
-using R5T.L0089.T000;
+using F10Y.L0003.L001;
+
 using R5T.T0132;
 
 using R5T.F0024.T001;
@@ -30,7 +31,7 @@ namespace R5T.F0024.F001
             return hasExtensibilityGlobals;
         }
 
-        public WasFound<ExtensibilityGlobalsGlobalSection> Has_ExtensibilityGlobals(SolutionFile solutionFile)
+        public Has<ExtensibilityGlobalsGlobalSection> Has_ExtensibilityGlobals(SolutionFile solutionFile)
         {
             var output = _Internal.Has_GlobalSection<ExtensibilityGlobalsGlobalSection>(
                 solutionFile,
@@ -67,7 +68,7 @@ namespace R5T.F0024.F001
             return output;
         }
 
-        public WasFound<NestedProjectsGlobalSection> Has_NestedProjects(SolutionFile solutionFile)
+        public Has<NestedProjectsGlobalSection> Has_NestedProjects(SolutionFile solutionFile)
         {
             var output = _Internal.Has_GlobalSection<NestedProjectsGlobalSection>(
                 solutionFile,
@@ -112,7 +113,7 @@ namespace R5T.F0024.F001
             return hasProjectConfigurationPlatforms;
         }
 
-        public WasFound<ProjectConfigurationPlatformsGlobalSection> Has_ProjectConfigurationPlatforms(SolutionFile solutionFile)
+        public Has<ProjectConfigurationPlatformsGlobalSection> Has_ProjectConfigurationPlatforms(SolutionFile solutionFile)
         {
             var output = _Internal.Has_GlobalSection<ProjectConfigurationPlatformsGlobalSection>(
                 solutionFile,
@@ -163,7 +164,7 @@ namespace R5T.F0024.F001
             });
         }
 
-        public WasFound<SolutionConfigurationPlatformsGlobalSection> Has_SolutionConfigurationPlatforms(SolutionFile solutionFile)
+        public Has<SolutionConfigurationPlatformsGlobalSection> Has_SolutionConfigurationPlatforms(SolutionFile solutionFile)
         {
             var output = _Internal.Has_GlobalSection<SolutionConfigurationPlatformsGlobalSection>(
                 solutionFile,

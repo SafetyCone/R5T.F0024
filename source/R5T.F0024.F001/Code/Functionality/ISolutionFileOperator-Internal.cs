@@ -2,7 +2,8 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 
-using R5T.L0089.T000;
+using F10Y.L0003.L001;
+
 using R5T.T0132;
 
 using R5T.F0024.T001;
@@ -30,7 +31,7 @@ namespace R5T.F0024.F001.Internal
             solutionFile.ProjectFileReferences.Add(projectFileReference);
         }
 
-        public WasFound<ProjectFileReference> HasProject(
+        public Has<ProjectFileReference> HasProject(
             SolutionFile solutionFile,
             string solutionFilePath,
             string projectFilePath)
@@ -46,7 +47,7 @@ namespace R5T.F0024.F001.Internal
             return output;
         }
 
-        public Dictionary<string, WasFound<ProjectFileReference>> HasProjects(
+        public Dictionary<string, Has<ProjectFileReference>> HasProjects(
             SolutionFile solutionFile,
             string solutionFilePath,
             IEnumerable<string> projectFilePaths)
@@ -69,7 +70,7 @@ namespace R5T.F0024.F001.Internal
             var output = join
                 .ToDictionary(
                     x => x.ProjectFilePath,
-                    x => WasFound.From(x.ProjectFileReference));
+                    x => Instances.HasOperator.From(x.ProjectFileReference));
 
             return output;
         }
@@ -77,7 +78,7 @@ namespace R5T.F0024.F001.Internal
         /// <summary>
         /// Chooses <see cref="HasProject_ByRelativeProjectFilePath(SolutionFile, string)"/> as the default.
         /// </summary>
-        public WasFound<ProjectFileReference> HasProject(
+        public Has<ProjectFileReference> HasProject(
             SolutionFile solutionFile,
             string projectRelativeFilePath)
         {
@@ -86,7 +87,7 @@ namespace R5T.F0024.F001.Internal
                 projectRelativeFilePath);
         }
 
-        public WasFound<ProjectFileReference> HasProject_ByRelativeProjectFilePath(
+        public Has<ProjectFileReference> HasProject_ByRelativeProjectFilePath(
             SolutionFile solutionFile,
             string projectRelativeFilePath)
         {
@@ -95,11 +96,11 @@ namespace R5T.F0024.F001.Internal
                 // Use robust First() even though there should not be multiple.
                 .FirstOrDefault();
 
-            var output = WasFound.From(projectOrDefault);
+            var output = Instances.HasOperator.From(projectOrDefault);
             return output;
         }
 
-        public WasFound<ProjectFileReference> HasProject_ByProjectFilePath(
+        public Has<ProjectFileReference> HasProject_ByProjectFilePath(
             SolutionFile solutionFile,
             string solutionFilePath,
             string projectFilePath)
@@ -131,7 +132,7 @@ namespace R5T.F0024.F001.Internal
                 throw new InvalidOperationException($"Solution did have have project: '{projectFilePath}'.");
             }
 
-            return hasProject.Result;
+            return hasProject.Value;
         }
     }
 }
